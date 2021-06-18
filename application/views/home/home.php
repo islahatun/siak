@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-
+  </nav>
   <div class="container-fluid mt-2">
     <h1 class="text-center  ">PROFIL DESA BANJAR</h1>
   </div>

@@ -29,4 +29,55 @@ class model_masyarakat extends CI_Model
         ];
         $this->db->insert('login', $data);
     }
+    public function getMasyarakatByNik()
+    {
+        $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
+        $nik = $n['nik'];
+
+        // $masyarakat = "SELECT * FROM masyarakat Where masyarakat.nik = '$nik'";
+        return $this->db->get_where('masyarakat', ['nik' => $nik])->row_array();
+    }
+    public function ktp()
+    {
+        $data = [
+            'nik' => $this->input->post('nik'),
+            'surat' => $this->input->post('surat')
+        ];
+
+        $this->db->insert('ktp', $data);
+    }
+    public function pindah()
+    {
+        $data = [
+            'nik' => $this->input->post('nik'),
+            'alamat_pindah' => $this->input->post('alamat_pindah'),
+            'rt/rw_pindah' => $this->input->post('rt/rw_pindah'),
+            'desa_pindah' => $this->input->post('desa_pindah'),
+            'kecamatan_pindah' => $this->input->post('kecamatan_pindah'),
+            'kabupaten_pindah' => $this->input->post('kabupaten_pindah'),
+            'provinsi_pindah' => $this->input->post('provinsi_pindah'),
+            'alasan_pindah' => $this->input->post('alasan_pindah'),
+            'surat' => $this->input->post('surat')
+        ];
+        $this->db->insert('surat_pindah', $data);
+    }
+    public function usaha()
+    {
+        $data = [
+            'nik' => $this->input->post('nik'),
+            'surat' => $this->input->post('surat'),
+            'jenis_usaha' => $this->input->post('jenis_usaha'),
+            'tempat_usaha' => $this->input->post('tempat_usaha')
+        ];
+        $this->db->insert('surat_usaha', $data);
+    }
+    public function pengajuan()
+    {
+        $data = [
+            'nik' => $this->input->post('nik'),
+            'surat' => $this->input->post('surat'),
+            'tanggal' => date('d/m/y')
+        ];
+        $this->db->insert('acc_surat', $data);
+    }
 }
