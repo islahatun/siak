@@ -171,7 +171,7 @@
                             <?= form_error('nik', '<small class="text-danger pl-3">', ' </small>') ?>
                         </div>
                         <div class="form-group row">
-                            <input type="text" class="form-control" id="inputPassword" name="tanggal" value="<?= date('d/m/y') ?>">
+                            <input type="text" class="form-control" id="inputPassword" name="tanggal" value="<?= date('y/m/d') ?>">
                             <?= form_error('tanggal', '<small class="text-danger pl-3">', ' </small>') ?>
                         </div>
                     </div>

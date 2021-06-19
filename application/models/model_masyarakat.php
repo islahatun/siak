@@ -54,7 +54,7 @@ class model_masyarakat extends CI_Model
             'rt/rw_pindah' => $this->input->post('rt/rw_pindah'),
             'desa_pindah' => $this->input->post('desa_pindah'),
             'kecamatan_pindah' => $this->input->post('kecamatan_pindah'),
-            'kabupaten_pindah' => $this->input->post('kabupaten_pindah'),
+            'kabupaten/kota_pindah' => $this->input->post('kabupaten/kota_pindah'),
             'provinsi_pindah' => $this->input->post('provinsi_pindah'),
             'alasan_pindah' => $this->input->post('alasan_pindah'),
             'surat' => $this->input->post('surat')
@@ -71,12 +71,32 @@ class model_masyarakat extends CI_Model
         ];
         $this->db->insert('surat_usaha', $data);
     }
+    public function domisili()
+    {
+        $data = [
+            'nik' => $this->input->post('nik'),
+            'surat' => $this->input->post('surat')
+        ];
+        $this->db->insert('surat_domisili', $data);
+    }
+    public function rame()
+    {
+        $data = [
+            'nik' => $this->input->post('nik'),
+            'surat' => $this->input->post('surat'),
+            'maksud' => $this->input->post('maksud'),
+            'tanggal_pengajuan' => $this->input->post('tanggal_pengajuan'),
+            'waktu' => $this->input->post('waktu'),
+            'tempat' => $this->input->post('tempat')
+        ];
+        $this->db->insert('surat_izin_rame', $data);
+    }
     public function pengajuan()
     {
         $data = [
             'nik' => $this->input->post('nik'),
             'surat' => $this->input->post('surat'),
-            'tanggal' => date('d/m/y')
+            'tanggal' => $this->input->post('tanggal')
         ];
         $this->db->insert('acc_surat', $data);
     }

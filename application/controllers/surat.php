@@ -54,7 +54,7 @@ class surat extends CI_Controller
         $this->form_validation->set_rules('rt/rw_pindah', 'rt/rw_pindah', 'trim|required');
         $this->form_validation->set_rules('desa_pindah', 'desa_pindah', 'trim|required');
         $this->form_validation->set_rules('kecamatan_pindah', 'kecamatan_pindah', 'trim|required');
-        $this->form_validation->set_rules('kabupaten_pindah', 'kabupaten_pindah ', 'trim|required');
+        $this->form_validation->set_rules('kabupaten/kota_pindah', 'kabupaten_pindah ', 'trim|required');
         $this->form_validation->set_rules('provinsi_pindah', 'provinsi_pindah', 'trim|required');
         $this->form_validation->set_rules('alasan_pindah', 'alasan_pindah', 'trim|required');
 
@@ -89,6 +89,7 @@ class surat extends CI_Controller
         $this->form_validation->set_rules('surat', 'surat', 'trim|required');
         $this->form_validation->set_rules('jenis_usaha', 'jenis_usaha', 'trim|required');
         $this->form_validation->set_rules('tempat_usaha', 'tempat_usaha pengajuan', 'trim|required');
+        $this->form_validation->set_rules('tanggal', 'tanggal pengajuan', 'trim|required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templets/header', $data);
@@ -131,11 +132,28 @@ class surat extends CI_Controller
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 
-        $this->load->view('templets/header', $data);
-        $this->load->view('templets/sidebar', $data);
-        $this->load->view('templets/topbar', $data);
-        $this->load->view('surat/domisili', $data);
-        $this->load->view('templets/footer');
+        $this->form_validation->set_rules('nik', 'nik', 'trim|required');
+        $this->form_validation->set_rules('tanggal', 'tanggal pengajuan', 'trim|required');
+        $this->form_validation->set_rules('surat', 'surat', 'trim|required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templets/header', $data);
+            $this->load->view('templets/sidebar', $data);
+            $this->load->view('templets/topbar', $data);
+            $this->load->view('surat/domisili', $data);
+            $this->load->view('templets/footer');
+        } else {
+            $this->model_masyarakat->domisili();
+            $this->model_masyarakat->pengajuan();
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Berhasil diajukan</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('surat/surat_domisili');
+        }
     }
     public function surat_nikah()
     {
@@ -145,11 +163,29 @@ class surat extends CI_Controller
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 
-        $this->load->view('templets/header', $data);
-        $this->load->view('templets/sidebar', $data);
-        $this->load->view('templets/topbar', $data);
-        $this->load->view('surat/nikah', $data);
-        $this->load->view('templets/footer');
+        $this->form_validation->set_rules('nik', 'nik', 'trim|required');
+        $this->form_validation->set_rules('tanggal', 'tanggal pengajuan', 'trim|required');
+        $this->form_validation->set_rules('surat', 'surat', 'trim|required');
+        $this->form_validation->set_rules('pasangan', 'pasangan', 'trim|required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templets/header', $data);
+            $this->load->view('templets/sidebar', $data);
+            $this->load->view('templets/topbar', $data);
+            $this->load->view('surat/nikah', $data);
+            $this->load->view('templets/footer');
+        } else {
+            $this->model_masyarakat->domisili();
+            $this->model_masyarakat->pengajuan();
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Berhasil diajukan</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('surat/surat_nikah');
+        }
     }
     public function surat_rame()
     {
@@ -159,10 +195,31 @@ class surat extends CI_Controller
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 
-        $this->load->view('templets/header', $data);
-        $this->load->view('templets/sidebar', $data);
-        $this->load->view('templets/topbar', $data);
-        $this->load->view('surat/rame', $data);
-        $this->load->view('templets/footer');
+        $this->form_validation->set_rules('nik', 'nik', 'trim|required');
+        $this->form_validation->set_rules('tanggal', 'tanggal pengajuan', 'trim|required');
+        $this->form_validation->set_rules('surat', 'surat', 'trim|required');
+        $this->form_validation->set_rules('maksud', 'maksud', 'trim|required');
+        $this->form_validation->set_rules('tanggal_pelaksanaan', 'tanggal_pelaksanaan ', 'trim|required');
+        $this->form_validation->set_rules('tempat', 'tempat', 'trim|required');
+        $this->form_validation->set_rules('waktu', 'waktu', 'trim|required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templets/header', $data);
+            $this->load->view('templets/sidebar', $data);
+            $this->load->view('templets/topbar', $data);
+            $this->load->view('surat/rame', $data);
+            $this->load->view('templets/footer');
+        } else {
+            $this->model_masyarakat->domisili();
+            $this->model_masyarakat->pengajuan();
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Berhasil diajukan</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('surat/surat_rame');
+        }
     }
 }
