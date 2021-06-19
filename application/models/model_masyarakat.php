@@ -100,4 +100,30 @@ class model_masyarakat extends CI_Model
         ];
         $this->db->insert('acc_surat', $data);
     }
+    public function editPofil()
+    {
+        $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
+        $nik = $n['nik'];
+        $data = [
+            'nama' => $this->input->post('nama'),
+            'kk' => $this->input->post('kk'),
+            'nik' => $this->input->post('nik'),
+            'jk' => $this->input->post('jk'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'alamat' => $this->input->post('alamat'),
+            'rt/rw' => $this->input->post('rt/rw'),
+            'desa' => $this->input->post('desa'),
+            'kecamatan' => $this->input->post('kecamatan'),
+            'kabupaten' => $this->input->post('kabupaten'),
+            'agama' => $this->input->post('agama'),
+            'status' => $this->input->post('status'),
+            'pendidikan_terakhir' => $this->input->post('pendidikan_terakhir'),
+            'kewarganegaraan' => $this->input->post('kewarganegaraan'),
+            'pekerjaan' => $this->input->post('pekerjaan'),
+            'gol' => $this->input->post('gol')
+        ];
+        $this->db->where('nik', $nik);
+        $this->db->update('masyarakat', $data);
+    }
 }
