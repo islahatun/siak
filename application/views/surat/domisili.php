@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword" name="tanggal" vvalue="<?= date('y/m/d') ?>" hidden>
+                                <input type="text" class="form-control" id="inputPassword" name="tanggal" value="<?= date('y/m/d') ?>" hidden>
                                 <?= form_error('tanggal', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                         </div>

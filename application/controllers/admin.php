@@ -10,19 +10,24 @@ class admin extends CI_Controller
     }
     public function index()
     {
-        //     $data['tittle'] = "Dashboard";
-        //     $this->load->view('templets/header', $data);
-        //     $this->load->view('templets/sidebar');
-        //     $this->load->view('templets/topbar');
-        //     $this->load->view('admin/dashboard', $data);
-        //     $this->load->view('templets/footer');
-        echo "selamat datang";
+        $data['tittle'] = "Dashboard";
+        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['menu'] = $this->model_masyarakat->menu();
+
+        $this->load->view('templets/header', $data);
+        $this->load->view('templets/sidebar');
+        $this->load->view('templets/topbar');
+        $this->load->view('admin/dashboard', $data);
+        $this->load->view('templets/footer');
     }
     public function penduduk()
     {
-        $data['masyarakat'] = $this->db->get('masyarakat')->result_array();
         $data['tittle'] = "Data Penduduk";
         $data['judul'] = "Data Penduduk";
+        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['menu'] = $this->model_masyarakat->menu();
+        $data['masyarakat'] = $this->db->get('masyarakat')->result_array();
+
         $this->load->view('templets/header', $data);
         $this->load->view('templets/sidebar');
         $this->load->view('templets/topbar');
@@ -31,7 +36,8 @@ class admin extends CI_Controller
     }
     public function tambah_penduduk()
     {
-
+        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['menu'] = $this->model_masyarakat->menu();
         $data['tittle'] = "Tambah Data Penduduk";
         $data['judul'] = "Tambah Penduduk";
 
@@ -93,5 +99,22 @@ class admin extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Data Berhasil dihapus</strong></div>');
 
         redirect('admin/penduduk');
+    }
+    public function surat()
+    {
+        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['menu'] = $this->model_masyarakat->menu();
+        $data['tittle'] = "Acc Surat";
+        $data['surat'] = $this->model_masyarakat->surat();
+        $this->load->view('templets/header', $data);
+        $this->load->view('templets/sidebar');
+        $this->load->view('templets/topbar');
+        $this->load->view('admin/surat', $data);
+        $this->load->view('templets/footer');
+    }
+    public function print($id)
+    {
+        $data['surat'] = $this->model_masyarakat->getsurat($id);
+        $this->load->view('surat/acc', $data);
     }
 }

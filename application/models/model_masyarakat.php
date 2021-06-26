@@ -126,4 +126,14 @@ class model_masyarakat extends CI_Model
         $this->db->where('nik', $nik);
         $this->db->update('masyarakat', $data);
     }
+    public function surat()
+    {
+        $join = "SELECT *,masyarakat.nik FROM acc_surat JOIN masyarakat ON acc_surat.nik = masyarakat.nik";
+        return $this->db->query($join)->result_array();
+    }
+    public function getsurat($id)
+    {
+        $join = "SELECT * FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik WHERE acc_surat.id_acc = $id";
+        return $this->db->query($join)->row_array();
+    }
 }
