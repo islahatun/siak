@@ -16,18 +16,19 @@
                             <th scope="col">#</th>
                             <th scope="col">No. KK</th>
                             <th scope="col">NIK</th>
-                            <th scope="col">Nama_Lengkap_penduduk</th>
+                            <th scope="col">Nama_Lengkap</th>
                             <th scope="col">Tempat_Lahir</th>
                             <th scope="col">Tanggal_Lahir</th>
                             <th scope="col">Jenis_Kelamin</th>
                             <th scope="col">Agama</th>
+                            <th scope="col">Golongan_Darah</th>
                             <th scope="col">Kewarganegaraan</th>
                             <th scope="col">Alamat</th>
                             <th scope="col">Rt/Rw</th>
                             <th scope="col">Desa</th>
                             <th scope="col">Kecamatan</th>
                             <th scope="col">Kabupaten</th>
-                            <th scope="col">Pendidikan_Terakhir</th>
+                            <th scope="col">Pendidikan</th>
                             <th scope="col">Status_Menikah</th>
                             <th scope="col">Pekerjaan</th>
                             <th scope="col">Action</th>
@@ -45,6 +46,7 @@
                                 <td><?= $m['tanggal_lahir'] ?></td>
                                 <td><?= $m['jk'] ?></td>
                                 <td><?= $m['agama'] ?></td>
+                                <td><?= $m['gol'] ?></td>
                                 <td><?= $m['kewarganegaraan'] ?></td>
                                 <td><?= $m['alamat'] ?></td>
                                 <td><?= $m['rt/rw'] ?></td>
@@ -55,8 +57,8 @@
                                 <td><?= $m['status'] ?></td>
                                 <td><?= $m['pekerjaan'] ?></td>
                                 <td>
-                                    <a href="<?= base_url() ?>admin/edit_penduduk/<?= $m['id'] ?>" class="badge badge-success">Ubah</a>
-                                    <a href="<?= base_url() ?>admin/hapus_penduduk/<?= $m['id'] ?>" class="badge badge-danger" onclick=" return confirm('Apakah Anda Yakin?')">Hapus</a>
+                                    <a href="<?= base_url() ?>admin/edit_penduduk/<?= $m['nik'] ?>" class="badge badge-success">Ubah</a>
+                                    <a href="<?= base_url() ?>admin/hapus_penduduk/<?= $m['nik'] ?>" class="badge badge-danger" onclick=" return confirm('Apakah Anda Yakin?')">Hapus</a>
                                 </td>
                             </tr>
                     </tbody>

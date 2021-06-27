@@ -12,9 +12,9 @@ class model_masyarakat extends CI_Model
         $menu = "SELECT menu.* FROM menu JOIN akses_menu ON menu.id = akses_menu.menu_id WHERE akses_menu.level = '$level' ORDER BY  akses_menu.menu_id";
         return $this->db->query($menu)->result_array();
     }
-    public function delete_masyarakat($id)
+    public function delete_masyarakat($nik)
     {
-        $this->db->where('id', $id);
+        $this->db->where('nik', $nik);
         $this->db->delete('masyarakat');
     }
     public function regis()
@@ -33,6 +33,13 @@ class model_masyarakat extends CI_Model
     {
         $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
         $nik = $n['nik'];
+
+        // $masyarakat = "SELECT * FROM masyarakat Where masyarakat.nik = '$nik'";
+        return $this->db->get_where('masyarakat', ['nik' => $nik])->row_array();
+    }
+    public function getMasyarakat($nik)
+    {
+
 
         // $masyarakat = "SELECT * FROM masyarakat Where masyarakat.nik = '$nik'";
         return $this->db->get_where('masyarakat', ['nik' => $nik])->row_array();
@@ -127,6 +134,32 @@ class model_masyarakat extends CI_Model
         $this->db->where('nik', $nik);
         $this->db->update('masyarakat', $data);
     }
+    public function editpenduduk($nik)
+    {
+        $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
+        $nik = $n['nik'];
+        $data = [
+            'nama' => $this->input->post('nama'),
+            'kk' => $this->input->post('kk'),
+            'nik' => $this->input->post('nik'),
+            'jk' => $this->input->post('jk'),
+            'tempat_lahir' => $this->input->post('tempat_lahir'),
+            'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+            'alamat' => $this->input->post('alamat'),
+            'rt/rw' => $this->input->post('rt/rw'),
+            'desa' => $this->input->post('desa'),
+            'kecamatan' => $this->input->post('kecamatan'),
+            'kabupaten' => $this->input->post('kabupaten'),
+            'agama' => $this->input->post('agama'),
+            'status' => $this->input->post('status'),
+            'pendidikan_terakhir' => $this->input->post('pendidikan_terakhir'),
+            'kewarganegaraan' => $this->input->post('kewarganegaraan'),
+            'pekerjaan' => $this->input->post('pekerjaan'),
+            'gol' => $this->input->post('gol')
+        ];
+        $this->db->where('nik', $nik);
+        $this->db->update('masyarakat', $data);
+    }
     public function surat()
     {
         $join = "SELECT *,masyarakat.nik FROM acc_surat JOIN masyarakat ON acc_surat.nik = masyarakat.nik";
@@ -146,5 +179,29 @@ class model_masyarakat extends CI_Model
     {
         $join = "SELECT *, acc_surat.id_acc,surat_izin_rame.maksud, surat_izin_rame.hiburan,surat_izin_rame.waktu,surat_izin_rame.tempat FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_izin_rame ON surat_izin_rame.nik = masyarakat.nik WHERE acc_surat.id_acc = $id";
         return $this->db->query($join)->row_array();
+    }
+    public function artikel()
+    {
+
+        $logo = $_FILES['logo']['name'];
+        if ($logo) {
+            $config['upload_path']          = './assets/img/artikel/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 2048;
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('logo')) {
+                $error = array('error' => $this->upload->display_errors());
+
+                $this->load->view('upload_form', $error);
+            } else {
+                $data = [
+                    'judul' => $this->input->post('judul'),
+                    'isi' => $this->input->post('isi'),
+                    'foto' => $this->upload->data('_file_name')
+                ];
+                // $new_logo = $this->upload->data('_file_name');
+                $this->db->insert('artikel', $data);
+            }
+        }
     }
 }
