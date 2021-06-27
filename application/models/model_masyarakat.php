@@ -85,9 +85,10 @@ class model_masyarakat extends CI_Model
             'nik' => $this->input->post('nik'),
             'surat' => $this->input->post('surat'),
             'maksud' => $this->input->post('maksud'),
-            'tanggal_pengajuan' => $this->input->post('tanggal_pengajuan'),
+            'tanggal_pelaksanaan' => $this->input->post('tanggal_pelaksanaan'),
             'waktu' => $this->input->post('waktu'),
-            'tempat' => $this->input->post('tempat')
+            'tempat' => $this->input->post('tempat'),
+            'hiburan' => $this->input->post('hiburan')
         ];
         $this->db->insert('surat_izin_rame', $data);
     }
@@ -131,9 +132,19 @@ class model_masyarakat extends CI_Model
         $join = "SELECT *,masyarakat.nik FROM acc_surat JOIN masyarakat ON acc_surat.nik = masyarakat.nik";
         return $this->db->query($join)->result_array();
     }
-    public function getsurat($id)
+    public function getsuratktp($id)
     {
-        $join = "SELECT * FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik WHERE acc_surat.id_acc = $id";
+        $join = "SELECT *, acc_surat.id_acc FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik WHERE acc_surat.id_acc = $id";
+        return $this->db->query($join)->row_array();
+    }
+    public function getsuratusaha($id)
+    {
+        $join = "SELECT *, acc_surat.id_acc,surat_usaha.jenis_usaha, surat_usaha.tempat_usaha FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_usaha ON surat_usaha.nik = masyarakat.nik WHERE acc_surat.id_acc = $id";
+        return $this->db->query($join)->row_array();
+    }
+    public function getsuratrame($id)
+    {
+        $join = "SELECT *, acc_surat.id_acc,surat_izin_rame.maksud, surat_izin_rame.hiburan,surat_izin_rame.waktu,surat_izin_rame.tempat FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_izin_rame ON surat_izin_rame.nik = masyarakat.nik WHERE acc_surat.id_acc = $id";
         return $this->db->query($join)->row_array();
     }
 }

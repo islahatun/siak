@@ -202,6 +202,7 @@ class surat extends CI_Controller
         $this->form_validation->set_rules('tanggal_pelaksanaan', 'tanggal_pelaksanaan ', 'trim|required');
         $this->form_validation->set_rules('tempat', 'tempat', 'trim|required');
         $this->form_validation->set_rules('waktu', 'waktu', 'trim|required');
+        $this->form_validation->set_rules('hiburan', 'hiburan', 'trim|required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templets/header', $data);
@@ -210,7 +211,7 @@ class surat extends CI_Controller
             $this->load->view('surat/rame', $data);
             $this->load->view('templets/footer');
         } else {
-            $this->model_masyarakat->domisili();
+            $this->model_masyarakat->rame();
             $this->model_masyarakat->pengajuan();
             $this->session->set_flashdata('message', '
             <div class="alert alert-primary alert-dismissible fade show" role="alert">

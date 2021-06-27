@@ -47,6 +47,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="inputnik" class="col-sm-4 col-form-label">Hiburan</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="inputnik" name="hiburan">
+                                <?= form_error('hiburan', '<small class="text-danger pl-3">', ' </small>') ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="inputnik" class="col-sm-4 col-form-label">Tanggal</label>
                             <div class="col-sm-7">
                                 <input type="date" class="form-control" id="inputnik" name="tanggal_pelaksanaan">
@@ -69,19 +76,19 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputnik" name="surat" value="rame">
+                                <input type="text" class="form-control" id="inputnik" name="surat" value="rame" hidden>
                                 <?= form_error('surat', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputnik" name="tanggal" value="<?= date('y/m/d') ?>">
+                                <input type="text" class="form-control" id="inputnik" name="tanggal" value="<?= date('y/m/d') ?>" hidden>
                                 <?= form_error('tanggal', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputnik" name="nik" value="<?= $masyarakat['nik'] ?>">
+                                <input type="text" class="form-control" id="inputnik" name="nik" value="<?= $masyarakat['nik'] ?>" hidden>
                                 <?= form_error('nik', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                         </div>

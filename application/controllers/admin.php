@@ -114,7 +114,34 @@ class admin extends CI_Controller
     }
     public function print($id)
     {
-        $data['surat'] = $this->model_masyarakat->getsurat($id);
-        $this->load->view('surat/acc', $data);
+
+        $data['surat'] = $this->model_masyarakat->getsuratktp($id);
+        $data['usaha'] = $this->model_masyarakat->getsuratusaha($id);
+        $data['rame'] = $this->model_masyarakat->getsuratrame($id);
+        $surat = $this->model_masyarakat->getsuratktp($id);
+
+        switch ($surat['surat']) {
+            case 'ktp':
+                $this->load->view('surat/accKTP', $data);
+                break;
+            case 'usaha':
+                $this->load->view('surat/accUsaha', $data);
+                break;
+            case 'domisili':
+                $this->load->view('surat/accDomisili', $data);
+                break;
+            case 'nikah':
+                $this->load->view('surat/accNikah', $data);
+                break;
+            case 'sktm':
+                $this->load->view('surat/accSktm', $data);
+                break;
+            case 'rame':
+                $this->load->view('surat/accRame', $data);
+                break;
+            default:
+                $this->load->view('surat/accPindah', $data);
+                break;
+        }
     }
 }

@@ -23,19 +23,20 @@
       <a href="<?= base_url('auth/login'); ?>" class="btn btn-light">Login</a>
     </div>
   </nav>
-  <div id="carouselExampleSlidesOnly" class="carousel slide mt-5" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="<?= base_url('assets/') ?>img/poto1.png" width="300" height="500" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="<?= base_url('assets/') ?>img/poto2.jpg" width="300" height="500" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="<?= base_url('assets/') ?>img/poto3.jpg" width="300" height="500" alt="Third slide">
+  <nav>
+    <div id="carouselExampleSlidesOnly" class="carousel slide mt-5" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="<?= base_url('assets/') ?>img/poto1.png" width="300" height="500" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="<?= base_url('assets/') ?>img/poto2.jpg" width="300" height="500" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="<?= base_url('assets/') ?>img/poto3.jpg" width="300" height="500" alt="Third slide">
+        </div>
       </div>
     </div>
-  </div>
   </nav>
   <div class="container-fluid mt-2">
     <h1 class="text-center  ">PROFIL DESA BANJAR</h1>
