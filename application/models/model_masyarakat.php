@@ -162,7 +162,12 @@ class model_masyarakat extends CI_Model
     }
     public function surat()
     {
-        $join = "SELECT *,masyarakat.nik FROM acc_surat JOIN masyarakat ON acc_surat.nik = masyarakat.nik";
+        $join = "SELECT *,masyarakat.nik FROM acc_surat JOIN masyarakat ON acc_surat.nik = masyarakat.nik ORDER BY id_acc DESC";
+        return $this->db->query($join)->result_array();
+    }
+    public function laporan_surat()
+    {
+        $join = "SELECT *,masyarakat.nik FROM acc_surat JOIN masyarakat ON acc_surat.nik = masyarakat.nik ";
         return $this->db->query($join)->result_array();
     }
     public function getsuratktp($id)
@@ -183,13 +188,13 @@ class model_masyarakat extends CI_Model
     public function artikel()
     {
 
-        $logo = $_FILES['logo']['name'];
-        if ($logo) {
+        $foto = $_FILES['foto']['name'];
+        if ($foto) {
             $config['upload_path']          = './assets/img/artikel/';
             $config['allowed_types']        = 'gif|jpg|png|jpeg';
             $config['max_size']             = 2048;
             $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('logo')) {
+            if (!$this->upload->do_upload('foto')) {
                 $error = array('error' => $this->upload->display_errors());
 
                 $this->load->view('upload_form', $error);
@@ -197,11 +202,47 @@ class model_masyarakat extends CI_Model
                 $data = [
                     'judul' => $this->input->post('judul'),
                     'isi' => $this->input->post('isi'),
-                    'foto' => $this->upload->data('_file_name')
+                    'foto' => $this->upload->data('file_name')
                 ];
                 // $new_logo = $this->upload->data('_file_name');
                 $this->db->insert('artikel', $data);
             }
         }
+    }
+    public function get_artikel()
+    {
+        $this->db->order_by('id', 'desc');
+        return $this->db->get('artikel')->result_array();
+        // $query = $this->db->get('karyawan');
+        // return $query->result();
+    }
+    public function struktur()
+    {
+        return $this->db->get('struktur-organisasi')->row_array();
+    }
+    public function insert_struktur()
+    {
+        $data = [
+            'lurah' => $this->input->post('lurah'),
+            'sekretaris' => $this->input->post('sekretaris'),
+            'bendahara' => $this->input->post('bendahara'),
+            'kasi_pelayanan' => $this->input->post('kasi_pelayanan'),
+            'kasi_pemerintahan' => $this->input->post('kasi_pemerintahan'),
+            'kasi_pemberdayaan' => $this->input->post('kasi_pemberdayaan'),
+            'kaur_perencanaan' => $this->input->post('kaur_perencanaan'),
+            'kaur_keuangan' => $this->input->post('kaur_keuangan'),
+            'kaur_umum' => $this->input->post('kaur_umum'),
+            'kadus1' => $this->input->post('kadus1'),
+            'kadus2' => $this->input->post('kadus2'),
+        ];
+        return $this->db->update('struktur-organisasi', $data);
+    }
+    public function perempuan()
+    {
+        return $this->db->get_where('masyarakat', ['jk' => 'Perempuan'])->num_rows();
+    }
+    public function laki()
+    {
+        return $this->db->get_where('masyarakat', ['jk' => 'Laki-laki'])->num_rows();
     }
 }

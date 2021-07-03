@@ -57,8 +57,8 @@
                                 <td><?= $m['status'] ?></td>
                                 <td><?= $m['pekerjaan'] ?></td>
                                 <td>
-                                    <a href="<?= base_url() ?>admin/edit_penduduk/<?= $m['nik'] ?>" class="badge badge-success">Ubah</a>
-                                    <a href="<?= base_url() ?>admin/hapus_penduduk/<?= $m['nik'] ?>" class="badge badge-danger" onclick=" return confirm('Apakah Anda Yakin?')">Hapus</a>
+                                    <a href="<?= base_url() ?>admin/edit_penduduk/<?= $m['nik'] ?>" class="badge badge-success"><i class="fa fa-edit"> Ubah</i></a>
+                                    <a href="<?= base_url() ?>admin/hapus_penduduk/<?= $m['nik'] ?>" class="badge  badge-danger" onclick=" return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash-alt"> Hapus</i></a>
                                 </td>
                             </tr>
                     </tbody>

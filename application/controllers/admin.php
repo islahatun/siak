@@ -13,6 +13,10 @@ class admin extends CI_Controller
         $data['tittle'] = "Dashboard";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
+        $data['artikel'] = $this->model_masyarakat->get_artikel();
+        $data['perempuan'] = $this->model_masyarakat->perempuan();
+        $data['laki'] = $this->model_masyarakat->laki();
+        // $data['count']  = $this->model_masyarakat->semua();
 
         $this->load->view('templets/header', $data);
         $this->load->view('templets/sidebar');
@@ -87,7 +91,7 @@ class admin extends CI_Controller
             ];
             $this->db->insert('masyarakat', $data);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Data Berhasil di masukkan</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span </button> </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Data Berhasil di masukkan</strong></div>');
 
             redirect('admin/penduduk');
         }
@@ -128,7 +132,7 @@ class admin extends CI_Controller
 
             $this->model_masyarakat->editpenduduk($nik);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di upload</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span </button> </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di upload</strong></div>');
 
             redirect('admin/penduduk');
         }
@@ -152,6 +156,12 @@ class admin extends CI_Controller
         $this->load->view('templets/topbar');
         $this->load->view('admin/surat', $data);
         $this->load->view('templets/footer');
+    }
+    public function laporan()
+    {
+        $data['surat'] = $this->model_masyarakat->laporan_surat();
+
+        $this->load->view('admin/laporan', $data);
     }
     public function print($id)
     {
@@ -203,9 +213,43 @@ class admin extends CI_Controller
         } else {
             $this->model_masyarakat->artikel();
 
-            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di upload</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span </button> </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di upload</strong> </div>');
 
             redirect('admin/artikel');
+        }
+    }
+    public function desa()
+    {
+        $data['tittle'] = "Tentang Desa";
+        $data['judul'] = "Struktur Organisasi";
+        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['menu'] = $this->model_masyarakat->menu();
+        $data['struktur'] = $this->model_masyarakat->struktur();
+
+        $this->form_validation->set_rules('lurah', 'lurah', 'required|trim');
+        $this->form_validation->set_rules('sekretaris', 'sekretaris', 'required|trim');
+        $this->form_validation->set_rules('bendahara', 'bendahara', 'required|trim');
+        $this->form_validation->set_rules('kasi_pelayanan', 'Kasi Pelayanan', 'required|trim');
+        $this->form_validation->set_rules('kasi_pemerintahan', 'Kasi Pemerintahan', 'required|trim');
+        $this->form_validation->set_rules('kasi_pemberdayaan', 'kasi_pemberdayaan', 'required|trim');
+        $this->form_validation->set_rules('kaur_perencanaan', 'Kaur Perencanaan', 'required|trim');
+        $this->form_validation->set_rules('kaur_keuangan', 'kaur_keuangan', 'required|trim');
+        $this->form_validation->set_rules('kaur_umum', 'kaur_umum', 'required|trim');
+        $this->form_validation->set_rules('kadus1', 'kadus1', 'required|trim');
+        $this->form_validation->set_rules('kadus2', 'kadus2 Perkawinan', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templets/header', $data);
+            $this->load->view('templets/sidebar', $data);
+            $this->load->view('templets/topbar', $data);
+            $this->load->view('admin/struktur', $data);
+            $this->load->view('templets/footer');
+        } else {
+            $this->model_masyarakat->insert_struktur();
+
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di Simpan</strong></div>');
+
+            redirect('admin/desa');
         }
     }
 }

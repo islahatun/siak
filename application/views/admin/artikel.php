@@ -44,7 +44,7 @@
         </div>
 
         <div class="text-right">
-            <button type="submit" class="btn btn-dark">Publish</button>
+            <button type="submit" class="btn btn-dark" onclick=" return confirm('Apakah Anda Yakin Utuk Publish? Data tidak dapat diubah jika sudah di publish ')">Publish</button>
         </div>
 
 

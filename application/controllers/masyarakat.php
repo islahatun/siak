@@ -14,11 +14,15 @@ class masyarakat extends CI_Controller
         $data['tittle'] = "Dashboard";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
+        $data['artikel'] = $this->model_masyarakat->get_artikel();
+        $data['perempuan'] = $this->model_masyarakat->perempuan();
+        $data['laki'] = $this->model_masyarakat->laki();
+        // $data['count']  = $this->model_masyarakat->semua();
 
         $this->load->view('templets/header', $data);
-        $this->load->view('templets/sidebar', $data);
-        $this->load->view('templets/topbar', $data);
-        $this->load->view('masyarakat/dashboard', $data);
+        $this->load->view('templets/sidebar');
+        $this->load->view('templets/topbar');
+        $this->load->view('admin/dashboard', $data);
         $this->load->view('templets/footer');
     }
     public function profil()
