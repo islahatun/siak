@@ -54,19 +54,19 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputnik" name="surat" value="nikah">
+                                <input type="text" class="form-control" id="inputnik" name="surat" hidden value="nikah">
                                 <?= form_error('surat', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputnik" name="tanggal" value="<?= date('y/m/d') ?>">
+                                <input type="text" class="form-control" id="inputnik" name="tanggal" hidden value="<?= date('y/m/d') ?>">
                                 <?= form_error('tanggal', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputnik" name="nik" value="<?= $masyarakat['nik'] ?>">
+                                <input type="text" class="form-control" id="inputnik" name="nik" hidden value="<?= $masyarakat['nik'] ?>">
                                 <?= form_error('nik', '<small class="text-danger pl-3">', ' </small>') ?>
                             </div>
                         </div>

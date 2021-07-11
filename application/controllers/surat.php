@@ -32,11 +32,37 @@ class surat extends CI_Controller
             $this->session->set_flashdata('message', '
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
             <strong>Berhasil diajukan</strong> 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+            
             </div>');
             redirect('surat/surat_ktp');
+        }
+    }
+    public function ikut_pindah()
+    {
+        $data['tittle'] = "pembuatan Surat Pindah";
+        $data['judul'] = "surat Pindah";
+        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['menu'] = $this->model_masyarakat->menu();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
+        $data['ikut'] = $this->model_masyarakat->get_ikut();
+
+        $this->form_validation->set_rules('nik_surat', 'nik', 'trim|required');
+        $this->form_validation->set_rules('nama_ikut', 'nama', 'trim|required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templets/header', $data);
+            $this->load->view('templets/sidebar', $data);
+            $this->load->view('templets/topbar', $data);
+            $this->load->view('surat/pindah', $data);
+            $this->load->view('templets/footer');
+        } else {
+            $this->model_masyarakat->ikut_pindah();
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Berhasil diajukan</strong> 
+            
+            </div>');
+            redirect('surat/surat_pindah');
         }
     }
     public function surat_pindah()
@@ -46,6 +72,7 @@ class surat extends CI_Controller
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
+        $data['ikut'] = $this->model_masyarakat->get_ikut();
 
         $this->form_validation->set_rules('nik', 'nik', 'trim|required');
         $this->form_validation->set_rules('tanggal', 'tanggal pengajuan', 'trim|required');
@@ -70,9 +97,6 @@ class surat extends CI_Controller
             $this->session->set_flashdata('message', '
             <div class="alert alert-primary alert-dismissible fade show" role="alert">
             <strong>Berhasil diajukan</strong> 
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
             </div>');
             redirect('surat/surat_pindah');
         }
@@ -175,7 +199,7 @@ class surat extends CI_Controller
             $this->load->view('surat/nikah', $data);
             $this->load->view('templets/footer');
         } else {
-            $this->model_masyarakat->domisili();
+            $this->model_masyarakat->nikah();
             $this->model_masyarakat->pengajuan();
             $this->session->set_flashdata('message', '
             <div class="alert alert-primary alert-dismissible fade show" role="alert">

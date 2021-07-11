@@ -170,6 +170,8 @@ class admin extends CI_Controller
         $data['usaha'] = $this->model_masyarakat->getsuratusaha($id);
         $data['rame'] = $this->model_masyarakat->getsuratrame($id);
         $surat = $this->model_masyarakat->getsuratktp($id);
+        $data['pindah'] = $this->model_masyarakat->suratpindah($id);
+        $data['ikut'] = $this->model_masyarakat->surat_ikut_pindah($id);
 
         switch ($surat['surat']) {
             case 'ktp':

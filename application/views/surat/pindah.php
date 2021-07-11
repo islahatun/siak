@@ -163,49 +163,69 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <input type="text" class="form-control" id="inputPassword" name="surat" value="pindah">
+                            <input type="text" class="form-control" id="inputPassword" name="surat" hidden value="pindah">
                             <?= form_error('surat', '<small class="text-danger pl-3">', ' </small>') ?>
                         </div>
                         <div class="form-group row">
-                            <input type="text" class="form-control" id="inputPassword" name="nik" value="<?= $masyarakat['nik'] ?>">
+                            <input type="text" class="form-control" id="inputPassword" name="nik" value="<?= $masyarakat['nik'] ?>" hidden>
                             <?= form_error('nik', '<small class="text-danger pl-3">', ' </small>') ?>
                         </div>
                         <div class="form-group row">
-                            <input type="text" class="form-control" id="inputPassword" name="tanggal" value="<?= date('y/m/d') ?>">
+                            <input type="text" class="form-control" id="inputPassword" name="tanggal" hidden value="<?= date('y/m/d') ?>">
                             <?= form_error('tanggal', '<small class="text-danger pl-3">', ' </small>') ?>
                         </div>
                     </div>
                 </div>
         </div>
-        <div class="row">
-            <label for="">Pengikut :</label>
-            <div class="col">
+        <div class="container-fluid text-right">
+            <button class="btn btn-dark mb-5" type="submit">Kirim</button>
+        </div>
+        </form>
+        <div class="container">
+            <form action="<?= base_url('surat/ikut_pindah') ?>" method="post">
+                <div class="form-group row">
+                    <div class="col">
+                        <label for="inputnama" class="col-sm-4 col-form-label">Nama Ikut Pindah</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="inputnama" name="nama_ikut" placeholder="Masukkan Nama Lengkap">
+                            <?= form_error('nama_ikut', '<small class="text-danger pl-3">', ' </small>') ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="inputnama" name="nik_surat" value="<?= $masyarakat['nik'] ?>" hidden>
+                            <?= form_error('nik_surat', '<small class="text-danger pl-3">', ' </small>') ?>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-dark mb-5" type="submit">simpan</button>
+            </form>
+        </div>
+        <div class="container">
+            <div class="col-5">
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>
-                                <button class="btn btn-danger">Tidak Ikut</button>
-                            </td>
-                        </tr>
+                        <?php $j = 1; ?>
+                        <?php foreach ($ikut as $i) : ?>
+                            <tr>
+                                <th scope="row"><?= $j; ?></th>
+                                <td><?= $i['nama']; ?></td>
+
+                            </tr>
                     </tbody>
+                    <?php $j++; ?>
+                <?php endforeach ?>
                 </table>
             </div>
         </div>
-
-        <div class="container-fluid text-right">
-            <button class="btn btn-dark mb-5" type="submit">Kirim</button>
-        </div>
-        </form>
-
     </div>
 </div>
 

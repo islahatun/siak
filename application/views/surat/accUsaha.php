@@ -163,7 +163,9 @@
                         <br>
                         <br>
                         <br>
-                        <h4>Ade Rusyadi</h4>
+                        <?php $lurah =  $this->model_masyarakat->getlurah();
+                        ?>
+                        <h4><?= $lurah['lurah']; ?></h4>
 
                     </td>
                 </tr>
