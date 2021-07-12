@@ -17,6 +17,7 @@ class masyarakat extends CI_Controller
         $data['artikel'] = $this->model_masyarakat->get_artikel();
         $data['perempuan'] = $this->model_masyarakat->perempuan();
         $data['laki'] = $this->model_masyarakat->laki();
+        $data['struktur'] = $this->model_masyarakat->struktur();
         // $data['count']  = $this->model_masyarakat->semua();
 
         $this->load->view('templets/header', $data);

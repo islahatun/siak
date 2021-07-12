@@ -73,7 +73,6 @@
                         </div>
                     </div>
                     <div class="col">
-
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-4 col-form-label">Kecamatan</label>
                             <div class="col-sm-7">
@@ -130,7 +129,18 @@
                                 <?= form_error('gol', '<small class="text-danger pl-3">', '</small>') ?>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col">
+                                <img src="<?= base_url('assets/img/profil/') . $masyarakat['gambar']; ?>" alt="" class="img-thumbnail">
+                            </div>
+                            <div class="col">
+                                <div class="custom-file ">
+                                    <input type="file" class="custom-file-input" name="gambar" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
                 <div class="container-fluid text-right">

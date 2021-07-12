@@ -41,7 +41,7 @@
                 <tr>
                     <td colspan="3">
                         <div class="text-center font-weight-bold">
-                            <h1><u> SURAT KETERANGAN TIDAK MAMPU</u></h1>
+                            <h1><u> SURAT Pengantar Pernikahan</u></h1>
                         </div>
 
                         <div class="text-center">
@@ -61,7 +61,7 @@
                                     <h4> Nama</h4>
                                 </div>
                                 <div class="col">
-                                    <h4> : <?= $sktm['nama']; ?></h4>
+                                    <h4> : <?= $nikah['nama']; ?></h4>
                                 </div>
                             </div>
                             <div class="row">
@@ -71,7 +71,7 @@
                                     <h4>NIK</h4>
                                 </div>
                                 <div class="col">
-                                    <h4> : <?= $sktm['nik']; ?></h4>
+                                    <h4> : <?= $nikah['nik']; ?></h4>
                                 </div>
                             </div>
                             <div class="row">
@@ -81,7 +81,7 @@
                                     <h4> Tempat, Tanggal Lahir</h4>
                                 </div>
                                 <div class="col">
-                                    <h4>: <?= $sktm['tempat_lahir'] . ', ' . $sktm['tanggal_lahir'] ?></h4>
+                                    <h4>: <?= $nikah['tempat_lahir'] . ', ' . $nikah['tanggal_lahir'] ?></h4>
                                 </div>
                             </div>
                             <div class="row">
@@ -91,17 +91,7 @@
                                     <h4>Agama</h4>
                                 </div>
                                 <div class="col">
-                                    <h4> : <?= $sktm['agama']; ?></h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1">
-                                </div>
-                                <div class="col-4">
-                                    <h4> Status Perkawinan</h4>
-                                </div>
-                                <div class="col">
-                                    <h4> : <?= $sktm['status']; ?></h4>
+                                    <h4> : <?= $nikah['agama']; ?></h4>
                                 </div>
                             </div>
                             <div class="row">
@@ -111,7 +101,7 @@
                                     <h4>Pekerjaan</h4>
                                 </div>
                                 <div class="col">
-                                    <h4>: <?= $sktm['pekerjaan']; ?></h4>
+                                    <h4>: <?= $nikah['pekerjaan']; ?></h4>
                                 </div>
                             </div>
                             <div class="row">
@@ -121,22 +111,12 @@
                                     <h4> Alamat</h4>
                                 </div>
                                 <div class="col">
-                                    <h4>: <?= $sktm['alamat'] . ', ' . $sktm['rt/rw'] . ', ' . $sktm['desa'] . ', ' . $sktm['kecamatan'] . ', ' . $sktm['kabupaten'] ?></h4>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-1">
-                                </div>
-                                <div class="col-4">
-                                    <h4>Alasan</h4>
-                                </div>
-                                <div class="col">
-                                    <h4>: <?= $sktm['alasan']; ?></h4>
+                                    <h4>: <?= $nikah['alamat'] . ', ' . $nikah['rt/rw'] . ', ' . $nikah['desa'] . ', ' . $nikah['kecamatan'] . ', ' . $nikah['kabupaten'] ?></h4>
                                 </div>
                             </div>
                             <p></p>
                             <p class="text-justify">
-                            <h4>
+                            <h4>Nama tersebut di atas adalah benar warga kami akan melangsungkan pernikah dengan Saudara/i <?= $nikah['pasangan']; ?>.
                                 Demikian surat keterangan ini di buat dengan sebenarnya untuk diketahui dan dipergunakan sebagaimana mestinya,</h4>
                             </p>
                             <br>

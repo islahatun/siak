@@ -15,6 +15,7 @@ class surat extends CI_Controller
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
+        $data['surat'] = $this->model_masyarakat->surat_ktp();
 
         $this->form_validation->set_rules('nik', 'nik', 'trim|required');
         $this->form_validation->set_rules('tanggal', 'tanggal pengajuan', 'trim|required');
@@ -46,6 +47,7 @@ class surat extends CI_Controller
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['ikut'] = $this->model_masyarakat->get_ikut();
 
+
         $this->form_validation->set_rules('nik_surat', 'nik', 'trim|required');
         $this->form_validation->set_rules('nama_ikut', 'nama', 'trim|required');
 
@@ -73,6 +75,7 @@ class surat extends CI_Controller
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['ikut'] = $this->model_masyarakat->get_ikut();
+        $data['surat'] = $this->model_masyarakat->surat_pindah();
 
         $this->form_validation->set_rules('nik', 'nik', 'trim|required');
         $this->form_validation->set_rules('tanggal', 'tanggal pengajuan', 'trim|required');
@@ -107,6 +110,7 @@ class surat extends CI_Controller
         $data['judul'] = "Surat Keterangan Usaha";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
+        $data['surat'] = $this->model_masyarakat->surat_usaha();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 
         $this->form_validation->set_rules('nik', 'nik', 'trim|required');
@@ -140,13 +144,29 @@ class surat extends CI_Controller
         $data['judul'] = "Surat Keterangan Tidak Mampu";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
+        $data['surat'] = $this->model_masyarakat->surat_sktm1();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 
-        $this->load->view('templets/header', $data);
-        $this->load->view('templets/sidebar', $data);
-        $this->load->view('templets/topbar', $data);
-        $this->load->view('surat/sktm', $data);
-        $this->load->view('templets/footer');
+        $this->form_validation->set_rules('alasan', 'alasan', 'trim|required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templets/header', $data);
+            $this->load->view('templets/sidebar', $data);
+            $this->load->view('templets/topbar', $data);
+            $this->load->view('surat/sktm', $data);
+            $this->load->view('templets/footer');
+        } else {
+            $this->model_masyarakat->sktm();
+            $this->model_masyarakat->pengajuan();
+            $this->session->set_flashdata('message', '
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>Berhasil diajukan</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('surat/surat_sktm');
+        }
     }
     public function surat_domisili()
     {
@@ -154,6 +174,7 @@ class surat extends CI_Controller
         $data['judul'] = "Surat domisili";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
+        $data['surat'] = $this->model_masyarakat->surat_domisili();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 
         $this->form_validation->set_rules('nik', 'nik', 'trim|required');
@@ -185,6 +206,7 @@ class surat extends CI_Controller
         $data['judul'] = "Surat pengantar nikah";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
+        $data['surat'] = $this->model_masyarakat->surat_nikah1();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 
         $this->form_validation->set_rules('nik', 'nik', 'trim|required');
@@ -217,6 +239,7 @@ class surat extends CI_Controller
         $data['judul'] = "Surat pengantar nikah";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
+        $data['surat'] = $this->model_masyarakat->surat_rame();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 
         $this->form_validation->set_rules('nik', 'nik', 'trim|required');

@@ -16,6 +16,7 @@ class admin extends CI_Controller
         $data['artikel'] = $this->model_masyarakat->get_artikel();
         $data['perempuan'] = $this->model_masyarakat->perempuan();
         $data['laki'] = $this->model_masyarakat->laki();
+        $data['struktur'] = $this->model_masyarakat->struktur();
         // $data['count']  = $this->model_masyarakat->semua();
 
         $this->load->view('templets/header', $data);
@@ -45,23 +46,14 @@ class admin extends CI_Controller
         $data['tittle'] = "Tambah Data Penduduk";
         $data['judul'] = "Tambah Penduduk";
 
+
+        $this->form_validation->set_rules('nik', 'NIK', 'required|trim');
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('nik', 'NO. NIK', 'required|trim');
-        $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'required|trim');
-        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required|trim');
-        $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required|trim');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
-        $this->form_validation->set_rules('rt/rw', 'Rt / Rw', 'required|trim');
-        $this->form_validation->set_rules('desa', 'Desa', 'required|trim');
-        $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required|trim');
-        $this->form_validation->set_rules('agama', 'Agama', 'required|trim');
-        $this->form_validation->set_rules('status', 'Status Perkawinan', 'required|trim');
-        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'required|trim');
-        $this->form_validation->set_rules('gol', 'Golongan Darah', 'required|trim');
-        $this->form_validation->set_rules('kabupaten', 'kabupaten', 'required|trim');
-        $this->form_validation->set_rules('pendidikan_terakhir', 'Pendidikan Terakhir', 'required|trim');
-        $this->form_validation->set_rules('kewarganegaraan', 'Kewarganegaraan', 'required|trim');
-        $this->form_validation->set_rules('kk', 'NO.KK', 'required|trim');
+        $this->form_validation->set_rules('sandi', 'Password', 'required|trim|min_length[6]|matches[sandi2]', [
+            'matches' => 'Password tidak sama',
+            'min_length' => 'Minimal 6 Karakter'
+        ]);
+        $this->form_validation->set_rules('sandi2', 'Password', 'required|matches[sandi]');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templets/header', $data);
@@ -87,7 +79,8 @@ class admin extends CI_Controller
                 'pendidikan_terakhir' => $this->input->post('pendidikan_terakhir'),
                 'kewarganegaraan' => $this->input->post('kewarganegaraan'),
                 'pekerjaan' => $this->input->post('pekerjaan'),
-                'gol' => $this->input->post('gol')
+                'gol' => $this->input->post('gol'),
+                'gambar' => 'default.jpg'
             ];
             $this->db->insert('masyarakat', $data);
 
@@ -172,7 +165,8 @@ class admin extends CI_Controller
         $surat = $this->model_masyarakat->getsuratktp($id);
         $data['pindah'] = $this->model_masyarakat->suratpindah($id);
         $data['ikut'] = $this->model_masyarakat->surat_ikut_pindah($id);
-
+        $data['nikah'] = $this->model_masyarakat->surat_nikah($id);
+        $data['sktm'] = $this->model_masyarakat->surat_sktm($id);
         switch ($surat['surat']) {
             case 'ktp':
                 $this->load->view('surat/accKTP', $data);
@@ -252,6 +246,37 @@ class admin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di Simpan</strong></div>');
 
             redirect('admin/desa');
+        }
+    }
+    public function admin()
+    {
+        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
+        $data['menu'] = $this->model_masyarakat->menu();
+        $data['admin'] = $this->model_masyarakat->admin();
+        $data['tittle'] = "Edit Admin";
+        $data['judul'] = "Edit Admin";
+
+        $this->form_validation->set_rules('nik', 'NIK', 'required|trim');
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('sandi', 'Password', 'required|trim|min_length[6]|matches[sandi2]', [
+            'matches' => 'Password tidak sama',
+            'min_length' => 'Minimal 6 Karakter'
+        ]);
+        $this->form_validation->set_rules('sandi2', 'Password', 'required|matches[sandi]');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templets/header', $data);
+            $this->load->view('templets/sidebar');
+            $this->load->view('templets/topbar');
+            $this->load->view('admin/admin', $data);
+            $this->load->view('templets/footer');
+        } else {
+
+            $this->model_masyarakat->editadmin();
+
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di upload</strong></div>');
+
+            redirect('auth/login');
         }
     }
 }

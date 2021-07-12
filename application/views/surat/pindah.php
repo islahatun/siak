@@ -177,9 +177,10 @@
                     </div>
                 </div>
         </div>
-        <div class="container-fluid text-right">
+        <span class="container-fluid">
+            <a href="<?= base_url('admin/print/') ?><?= $surat['id_acc'] ?>" class="btn btn-dark mb-5" type="submit">print</a>
             <button class="btn btn-dark mb-5" type="submit">Kirim</button>
-        </div>
+        </span>
         </form>
         <div class="container">
             <form action="<?= base_url('surat/ikut_pindah') ?>" method="post">
@@ -217,7 +218,7 @@
                         <?php foreach ($ikut as $i) : ?>
                             <tr>
                                 <th scope="row"><?= $j; ?></th>
-                                <td><?= $i['nama']; ?></td>
+                                <td><?= $i['nama_ikut']; ?></td>
 
                             </tr>
                     </tbody>

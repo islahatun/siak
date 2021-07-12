@@ -88,9 +88,12 @@
                     </div>
 
                 </div>
-                <div class="container-fluid text-right">
+                <span class="container-fluid">
+                    <a href="<?= base_url('admin/print/') ?><?= $surat['id_acc'] ?>" class="btn btn-dark mb-5" type="submit">print</a>
+                </span>
+                <span class="container-fluid text-right">
                     <button class="btn btn-dark mb-5" type="submit">Kirim</button>
-                </div>
+                </span>
             </form>
 
         </div>
