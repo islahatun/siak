@@ -17,6 +17,7 @@ class admin extends CI_Controller
         $data['perempuan'] = $this->model_masyarakat->perempuan();
         $data['laki'] = $this->model_masyarakat->laki();
         $data['struktur'] = $this->model_masyarakat->struktur();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         // $data['count']  = $this->model_masyarakat->semua();
 
         $this->load->view('templets/header', $data);
@@ -30,6 +31,7 @@ class admin extends CI_Controller
         $data['tittle'] = "Data Penduduk";
         $data['judul'] = "Data Penduduk";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->db->get('masyarakat')->result_array();
 
@@ -42,18 +44,29 @@ class admin extends CI_Controller
     public function tambah_penduduk()
     {
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['tittle'] = "Tambah Data Penduduk";
         $data['judul'] = "Tambah Penduduk";
 
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required|trim');
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('sandi', 'Password', 'required|trim|min_length[6]|matches[sandi2]', [
-            'matches' => 'Password tidak sama',
-            'min_length' => 'Minimal 6 Karakter'
-        ]);
-        $this->form_validation->set_rules('sandi2', 'Password', 'required|matches[sandi]');
+        $this->form_validation->set_rules('nik', 'NO. NIK', 'required|trim');
+        $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required|trim');
+        $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+        $this->form_validation->set_rules('rt/rw', 'Rt / Rw', 'required|trim');
+        $this->form_validation->set_rules('desa', 'Desa', 'required|trim');
+        $this->form_validation->set_rules('kecamatan', 'Kecamatan', 'required|trim');
+        $this->form_validation->set_rules('agama', 'Agama', 'required|trim');
+        $this->form_validation->set_rules('status', 'Status Perkawinan', 'required|trim');
+        $this->form_validation->set_rules('pekerjaan', 'Pekerjaan', 'required|trim');
+        $this->form_validation->set_rules('gol', 'Golongan Darah', 'required|trim');
+        $this->form_validation->set_rules('kabupaten', 'kabupaten', 'required|trim');
+        $this->form_validation->set_rules('pendidikan_terakhir', 'Pendidikan Terakhir', 'required|trim');
+        $this->form_validation->set_rules('kewarganegaraan', 'Kewarganegaraan', 'required|trim');
+        $this->form_validation->set_rules('kk', 'NO.KK', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templets/header', $data);
@@ -92,6 +105,7 @@ class admin extends CI_Controller
     public function edit_penduduk($nik)
     {
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakat($nik);
         $data['tittle'] = "Tambah Data Penduduk";
@@ -141,6 +155,7 @@ class admin extends CI_Controller
     public function surat()
     {
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['tittle'] = "Acc Surat";
         $data['surat'] = $this->model_masyarakat->surat();
@@ -195,7 +210,9 @@ class admin extends CI_Controller
     {
         $data['tittle'] = "Artikel";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['menu'] = $this->model_masyarakat->menu();
+        $data['artikel'] = $this->model_masyarakat->get_artikel();
 
         $this->form_validation->set_rules('judul', 'judul', 'required|trim');
         $this->form_validation->set_rules('isi', 'isi', 'required|trim');
@@ -214,10 +231,19 @@ class admin extends CI_Controller
             redirect('admin/artikel');
         }
     }
+    public function hapus_artikel($id)
+    {
+        $this->model_masyarakat->delete_artikel($id);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Artikel Berhasil dihapus</strong></div>');
+
+        redirect('admin/artikel');
+    }
     public function desa()
     {
         $data['tittle'] = "Tentang Desa";
         $data['judul'] = "Struktur Organisasi";
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['struktur'] = $this->model_masyarakat->struktur();
@@ -251,6 +277,7 @@ class admin extends CI_Controller
     public function admin()
     {
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['admin'] = $this->model_masyarakat->admin();

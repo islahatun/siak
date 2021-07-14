@@ -13,6 +13,7 @@ class masyarakat extends CI_Controller
     {
         $data['tittle'] = "Dashboard";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['artikel'] = $this->model_masyarakat->get_artikel();
         $data['perempuan'] = $this->model_masyarakat->perempuan();
@@ -30,6 +31,7 @@ class masyarakat extends CI_Controller
     {
         $data['tittle'] = "Profil";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 

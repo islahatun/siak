@@ -120,7 +120,7 @@ $kampung = $this->model_masyarakat->kampung();
       </div>
       <div class="mt-3">
         <center>
-          <h4>Staf Keluarahan Desa Banjar</h4>
+          <h4>Daftar Kampung Desa Banjar</h4>
         </center>
       </div>
       <?php foreach ($kampung as $k) : ?>

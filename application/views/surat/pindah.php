@@ -177,56 +177,64 @@
                     </div>
                 </div>
         </div>
-        <span class="container-fluid">
-            <a href="<?= base_url('admin/print/') ?><?= $surat['id_acc'] ?>" class="btn btn-dark mb-5" type="submit">print</a>
+        <span class="container-fluid text-right">
             <button class="btn btn-dark mb-5" type="submit">Kirim</button>
         </span>
         </form>
-        <div class="container">
-            <form action="<?= base_url('surat/ikut_pindah') ?>" method="post">
-                <div class="form-group row">
-                    <div class="col">
-                        <label for="inputnama" class="col-sm-4 col-form-label">Nama Ikut Pindah</label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="inputnama" name="nama_ikut" placeholder="Masukkan Nama Lengkap">
-                            <?= form_error('nama_ikut', '<small class="text-danger pl-3">', ' </small>') ?>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <form action="<?= base_url('surat/ikut_pindah') ?>" method="post">
+                        <div class="form-group row">
+                            <div class="col">
+                                <label for="inputnama" class="col-sm-4 col-form-label">Nama Ikut Pindah</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="inputnama" name="nama_ikut" placeholder="Masukkan Nama Lengkap">
+                                    <?= form_error('nama_ikut', '<small class="text-danger pl-3">', ' </small>') ?>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col">
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="inputnama" name="nik_surat" value="<?= $masyarakat['nik'] ?>" hidden>
-                            <?= form_error('nik_surat', '<small class="text-danger pl-3">', ' </small>') ?>
+                        <div class="form-group row">
+                            <div class="col">
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="inputnama" name="nik_surat" value="<?= $masyarakat['nik'] ?>" hidden>
+                                    <?= form_error('nik_surat', '<small class="text-danger pl-3">', ' </small>') ?>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <button class="btn btn-dark mb-5" type="submit">simpan</button>
+                    </form>
                 </div>
-                <button class="btn btn-dark mb-5" type="submit">simpan</button>
-            </form>
-        </div>
-        <div class="container">
-            <div class="col-5">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $j = 1; ?>
-                        <?php foreach ($ikut as $i) : ?>
-                            <tr>
-                                <th scope="row"><?= $j; ?></th>
-                                <td><?= $i['nama_ikut']; ?></td>
+            </div>
+            <div class="col">
+                <div class="container-fluid">
+                    <div class="col-5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $j = 1; ?>
+                                <?php foreach ($ikut as $i) : ?>
+                                    <tr>
+                                        <th scope="row"><?= $j; ?></th>
+                                        <td><?= $i['nama_ikut']; ?></td>
 
-                            </tr>
-                    </tbody>
-                    <?php $j++; ?>
-                <?php endforeach ?>
-                </table>
+                                    </tr>
+                            </tbody>
+                            <?php $j++; ?>
+                        <?php endforeach ?>
+                        </table>
+                    </div>
+                    <a href="<?= base_url('admin/print/') ?><?= $surat['id_acc'] ?>" class="btn btn-dark mb-5" type="submit">print</a>
+                </div>
             </div>
         </div>
+
+
     </div>
 </div>
 

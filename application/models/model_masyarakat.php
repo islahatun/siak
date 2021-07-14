@@ -356,6 +356,18 @@ class model_masyarakat extends CI_Model
         // $query = $this->db->get('karyawan');
         // return $query->result();
     }
+    // public function get_artikelById($id)
+    // {
+
+    //     return $this->db->get_where('artikel')->result_array();
+    //     // $query = $this->db->get('karyawan');
+    //     // return $query->result();
+    // }
+    public function delete_artikel($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('artikel');
+    }
     public function struktur()
     {
         return $this->db->get('struktur-organisasi')->row_array();

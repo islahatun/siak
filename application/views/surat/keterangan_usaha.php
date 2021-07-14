@@ -78,26 +78,26 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <input type="text" class="form-control" id="inputPassword" name="surat" value="usaha">
+                            <input type="text" class="form-control" id="inputPassword" name="surat" value="usaha" hidden>
                             <?= form_error('surat', '<small class="text-danger pl-3">', ' </small>') ?>
                         </div>
                         <div class="form-group row">
-                            <input type="text" class="form-control" id="inputPassword" name="nik" value="<?= $masyarakat['nik'] ?>">
+                            <input type="text" class="form-control" id="inputPassword" name="nik" value="<?= $masyarakat['nik'] ?>" hidden>
                             <?= form_error('nik', '<small class="text-danger pl-3">', ' </small>') ?>
                         </div>
                         <div class="form-group row">
-                            <input type="text" class="form-control" id="inputPassword" name="tanggal" value="<?= date('y/m/d') ?>">
+                            <input type="text" class="form-control" id="inputPassword" name="tanggal" value="<?= date('y/m/d') ?>" hidden>
                             <?= form_error('tanggal', '<small class="text-danger pl-3">', ' </small>') ?>
                         </div>
                     </div>
                 </div>
+                <span class="container-fluid">
+                    <a href="<?= base_url('admin/print/') ?><?= $surat['id_acc'] ?>" class="btn btn-dark mb-5" type="submit">print</a>
+                </span>
+                <span class="container-fluid text-right">
+                    <button class="btn btn-dark mb-5" type="submit">Kirim</button>
+                </span>
         </div>
-        <span class="container-fluid">
-            <a href="<?= base_url('admin/print/') ?><?= $surat['id_acc'] ?>" class="btn btn-dark mb-5" type="submit">print</a>
-        </span>
-        <span class="container-fluid text-right">
-            <button class="btn btn-dark mb-5" type="submit">Kirim</button>
-        </span>
         </form>
 
     </div>
