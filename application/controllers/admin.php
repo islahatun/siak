@@ -231,6 +231,32 @@ class admin extends CI_Controller
             redirect('admin/artikel');
         }
     }
+    public function edit_artikel($id)
+    {
+        $data['tittle'] = "Artikel";
+        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
+        $data['menu'] = $this->model_masyarakat->menu();
+        $data['artikel'] = $this->model_masyarakat->get_artikel();
+
+        $this->form_validation->set_rules('judul', 'judul', 'required|trim');
+        $this->form_validation->set_rules('isi', 'isi', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templets/header', $data);
+            $this->load->view('templets/sidebar', $data);
+            $this->load->view('templets/topbar', $data);
+            $this->load->view('admin/artikel', $data);
+            $this->load->view('templets/footer');
+        } else {
+            $this->model_masyarakat->artikel();
+
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di upload</strong> </div>');
+
+            redirect('admin/artikel');
+        }
+    }
+    
     public function hapus_artikel($id)
     {
         $this->model_masyarakat->delete_artikel($id);
