@@ -70,54 +70,72 @@ $kampung = $this->model_masyarakat->kampung();
           :<?= ($laki / 5000) * 100 ?>%
         </div>
       </div>
-      <center>
-        <h4>Staf Keluarahan Desa Banjar</h4>
-      </center>
-      <div class="row">
-        <div class="col">Lurah </div>
-        <div class="col">: <?= $struktur['lurah']; ?> </div>
-      </div>
-      <div class="row">
-        <div class="col">Sekretaris </div>
-        <div class="col">: <?= $struktur['sekretaris']; ?> </div>
-      </div>
-      <div class="row">
-        <div class="col">Bendahara </div>
-        <div class="col">: <?= $struktur['bendahara']; ?> </div>
-      </div>
-      <div class="row">
-        <div class="col">Kasi Pelayanan </div>
-        <div class="col">: <?= $struktur['kasi_pelayanan']; ?> </div>
-      </div>
-      <div class="row">
-        <div class="col">Kasi Pemerintahan </div>
-        <div class="col">: <?= $struktur['kasi_pemerintahan']; ?> </div>
-      </div>
-      <div class="row">
-        <div class="col">Kasi Pemberdayaan </div>
-        <div class="col">: <?= $struktur['kasi_pemberdayaan']; ?> </div>
-      </div>
-      <div class="row">
-        <div class="col">Kaur Perencanaan </div>
-        <div class="col">: <?= $struktur['kaur_perencanaan']; ?> </div>
-      </div>
-      <div class="row">
-        <div class="col">Kaur Keuangan </div>
-        <div class="col">: <?= $struktur['kaur_keuangan']; ?> </div>
+      <div class="row mt-3">
+        <div class="col">
+          <center>
+            <h4>Staf Keluarahan Desa Banjar</h4>
+          </center>
+          <div class="row">
+            <div class="col">Lurah </div>
+            <div class="col">: <?= $struktur['lurah']; ?> </div>
+          </div>
+          <div class="row">
+            <div class="col">Sekretaris </div>
+            <div class="col">: <?= $struktur['sekretaris']; ?> </div>
+          </div>
+          <div class="row">
+            <div class="col">Bendahara </div>
+            <div class="col">: <?= $struktur['bendahara']; ?> </div>
+          </div>
+          <div class="row">
+            <div class="col">Kasi Pelayanan </div>
+            <div class="col">: <?= $struktur['kasi_pelayanan']; ?> </div>
+          </div>
+          <div class="row">
+            <div class="col">Kasi Pemerintahan </div>
+            <div class="col">: <?= $struktur['kasi_pemerintahan']; ?> </div>
+          </div>
+          <div class="row">
+            <div class="col">Kasi Pemberdayaan </div>
+            <div class="col">: <?= $struktur['kasi_pemberdayaan']; ?> </div>
+          </div>
+          <div class="row">
+            <div class="col">Kaur Perencanaan </div>
+            <div class="col">: <?= $struktur['kaur_perencanaan']; ?> </div>
+          </div>
+          <div class="row">
+            <div class="col">Kaur Keuangan </div>
+            <div class="col">: <?= $struktur['kaur_keuangan']; ?> </div>
 
+          </div>
+          <div class="row">
+            <div class="col">Kaur Umum </div>
+            <div class="col">: <?= $struktur['kaur_umum']; ?> </div>
+          </div>
+          <div class="row">
+            <div class="col">Kadus1 </div>
+            <div class="col">: <?= $struktur['kadus1']; ?> </div>
+          </div>
+          <div class="row">
+            <div class="col">Kadus2</div>
+            <div class="col">: <?= $struktur['kadus2']; ?> </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="col">
+            <h3 class="text-center">Visi Misi</h3>
+            <div class="col">
+              <label for="">Visi</label>
+              <div class="div"><?= $struktur['visi']; ?></div>
+            </div>
+            <div class="col">
+              <label for="">Misi</label>
+              <div class="div"><?= $struktur['misi']; ?></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col">Kaur Umum </div>
-        <div class="col">: <?= $struktur['kaur_umum']; ?> </div>
-      </div>
-      <div class="row">
-        <div class="col">Kadus1 </div>
-        <div class="col">: <?= $struktur['kadus1']; ?> </div>
-      </div>
-      <div class="row">
-        <div class="col">Kadus2</div>
-        <div class="col">: <?= $struktur['kadus2']; ?> </div>
-      </div>
+
       <div class="mt-3">
         <center>
           <h4>Daftar Kampung Desa Banjar</h4>

@@ -36,7 +36,6 @@ class masyarakat extends CI_Controller
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
 
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('nik', 'NO. NIK', 'required|trim');
         $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'required|trim');
         $this->form_validation->set_rules('tempat_lahir', 'Tempat Lahir', 'required|trim');
         $this->form_validation->set_rules('tanggal_lahir', 'Tanggal Lahir', 'required|trim');

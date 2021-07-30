@@ -114,6 +114,26 @@
                                     <h4>: <?= $nikah['alamat'] . ', ' . $nikah['rt/rw'] . ', ' . $nikah['desa'] . ', ' . $nikah['kecamatan'] . ', ' . $nikah['kabupaten'] ?></h4>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-1">
+                                </div>
+                                <div class="col-4">
+                                    <h4>Nama Pasangan</h4>
+                                </div>
+                                <div class="col">
+                                    <h4>: <?= $nikah['pasangan']; ?></h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1">
+                                </div>
+                                <div class="col-4">
+                                    <h4>Alamat Pasangan</h4>
+                                </div>
+                                <div class="col">
+                                    <h4>: <?= $nikah['alamat_pasangan']; ?></h4>
+                                </div>
+                            </div>
                             <p></p>
                             <p class="text-justify">
                             <h4>Nama tersebut di atas adalah benar warga kami akan melangsungkan pernikah dengan Saudara/i <?= $nikah['pasangan']; ?>.

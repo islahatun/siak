@@ -53,6 +53,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="inputnik" class="col-sm-4 col-form-label">Alamat Pasangan</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" id="inputnik" name="alamat_pasangan"></textarea>
+                                <?= form_error('alamat_pasangan', '<small class="text-danger pl-3">', ' </small>') ?>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" id="inputnik" name="surat" hidden value="nikah">
                                 <?= form_error('surat', '<small class="text-danger pl-3">', ' </small>') ?>

@@ -213,6 +213,7 @@ class surat extends CI_Controller
         $this->form_validation->set_rules('tanggal', 'tanggal pengajuan', 'trim|required');
         $this->form_validation->set_rules('surat', 'surat', 'trim|required');
         $this->form_validation->set_rules('pasangan', 'pasangan', 'trim|required');
+        $this->form_validation->set_rules('alamat_pasangan', 'alamat_pasangan', 'trim|required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templets/header', $data);

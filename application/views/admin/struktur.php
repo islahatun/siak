@@ -90,6 +90,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group row">
+                            <label for="inputnik" class="col-sm-4 col-form-label">VISI</label></label>
+                            <div class="col-sm-12">
+                                <textarea class="ckeditor" id="ckeditor" name="visi" value=""><?= $struktur['visi'] ?></textarea>
+                                <?= form_error('visi', '<small class="text-danger pl-4">', ' </small>') ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="inputnik" class="col-sm-4 col-form-label">MISI</label></label>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <textarea class="ckeditor" id="ckeditor" name="misi" value=""><?= $struktur['misi'] ?></textarea>
+                                <?= form_error('misi', '<small class="text-danger pl-4">', ' </small>') ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
         <div class="container-fluid text-right">
             <div class="form-group row">

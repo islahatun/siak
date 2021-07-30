@@ -64,7 +64,6 @@
                                 <th scope="row">1</th>
                                 <td><?= $a['judul']; ?></td>
                                 <td>
-                                    <a href="<?= base_url() ?>admin/edit_artikel/<?= $a['id'] ?>" class="badge  badge-danger"><i class="fa fa-edit"> Edit</i></a>
                                     <a href="<?= base_url() ?>admin/hapus_artikel/<?= $a['id'] ?>" class="badge  badge-danger" onclick=" return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash-alt"> Hapus</i></a>
                                 </td>
                             </tr>

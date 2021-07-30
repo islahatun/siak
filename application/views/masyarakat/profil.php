@@ -26,7 +26,6 @@
                             <label for="inputnik" class="col-sm-4 col-form-label">NO. NIK</label>
                             <div class="col-sm-7">
                                 <input type="text" class="form-control" id="inputnik" name="nik" value="<?= $masyarakat['nik'] ?>" readonly>
-                                <?= form_error('nik', '<small class="text-danger pl-3">', '</small>') ?>
                             </div>
                         </div>
                         <div class="form-group row">

@@ -65,7 +65,8 @@ class model_masyarakat extends CI_Model
     {
         $data = [
             'nik' => $this->input->post('nik'),
-            'surat' => $this->input->post('surat')
+            'surat' => $this->input->post('surat'),
+            'tanggal_surat' => date('y/m/d')
         ];
 
         $this->db->insert('ktp', $data);
@@ -81,7 +82,8 @@ class model_masyarakat extends CI_Model
             'kabupaten/kota_pindah' => $this->input->post('kabupaten/kota_pindah'),
             'provinsi_pindah' => $this->input->post('provinsi_pindah'),
             'alasan_pindah' => $this->input->post('alasan_pindah'),
-            'surat' => $this->input->post('surat')
+            'surat' => $this->input->post('surat'),
+            'tanggal_surat' => date('y/m/d')
         ];
         $this->db->insert('surat_pindah', $data);
     }
@@ -106,7 +108,8 @@ class model_masyarakat extends CI_Model
             'nik' => $this->input->post('nik'),
             'surat' => $this->input->post('surat'),
             'jenis_usaha' => $this->input->post('jenis_usaha'),
-            'tempat_usaha' => $this->input->post('tempat_usaha')
+            'tempat_usaha' => $this->input->post('tempat_usaha'),
+            'tanggal_surat' => date('y/m/d')
         ];
         $this->db->insert('surat_usaha', $data);
     }
@@ -115,7 +118,8 @@ class model_masyarakat extends CI_Model
         $data = [
             'nik' => $this->input->post('nik'),
             'surat' => $this->input->post('surat'),
-            'alamat_domisili' => $this->input->post('alamat_domisili')
+            'alamat_domisili' => $this->input->post('alamat_domisili'),
+            'tanggal_surat' => date('y/m/d')
         ];
         $this->db->insert('surat_domisili', $data);
     }
@@ -124,7 +128,9 @@ class model_masyarakat extends CI_Model
         $data = [
             'nik' => $this->input->post('nik'),
             'surat' => $this->input->post('surat'),
-            'pasangan' => $this->input->post('pasangan')
+            'pasangan' => $this->input->post('pasangan'),
+            'alamat_pasangan' => $this->input->post('alamat_pasangan'),
+            'tanggal_surat' => date('y/m/d')
         ];
         $this->db->insert('surat_nikah', $data);
     }
@@ -133,7 +139,8 @@ class model_masyarakat extends CI_Model
         $data = [
             'nik' => $this->input->post('nik'),
             'surat' => $this->input->post('surat'),
-            'alasan' => $this->input->post('alasan')
+            'alasan' => $this->input->post('alasan'),
+            'tanggal_surat' => date('y/m/d')
         ];
         $this->db->insert('surat_sktm', $data);
     }
@@ -146,7 +153,8 @@ class model_masyarakat extends CI_Model
             'tanggal_pelaksanaan' => $this->input->post('tanggal_pelaksanaan'),
             'waktu' => $this->input->post('waktu'),
             'tempat' => $this->input->post('tempat'),
-            'hiburan' => $this->input->post('hiburan')
+            'hiburan' => $this->input->post('hiburan'),
+            'tanggal_surat' => date('y/m/d')
         ];
         $this->db->insert('surat_izin_rame', $data);
     }
@@ -173,13 +181,12 @@ class model_masyarakat extends CI_Model
                 $this->load->view('upload_form', $error);
             } else {
 
-                // $new_logo = $this->upload->data('file_name');
+                $new_logo = $this->upload->data('file_name');
                 $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
                 $nik = $n['nik'];
                 $data = [
                     'nama' => $this->input->post('nama'),
                     'kk' => $this->input->post('kk'),
-                    'nik' => $this->input->post('nik'),
                     'jk' => $this->input->post('jk'),
                     'tempat_lahir' => $this->input->post('tempat_lahir'),
                     'tanggal_lahir' => $this->input->post('tanggal_lahir'),
@@ -194,7 +201,7 @@ class model_masyarakat extends CI_Model
                     'kewarganegaraan' => $this->input->post('kewarganegaraan'),
                     'pekerjaan' => $this->input->post('pekerjaan'),
                     'gol' => $this->input->post('gol'),
-                    'gambar' => $this->upload->data('file_name')
+                    'gambar' => $new_logo
                 ];
                 $this->db->where('nik', $nik);
                 $this->db->update('masyarakat', $data);
@@ -250,7 +257,7 @@ class model_masyarakat extends CI_Model
     {
         $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
         $nik = $n['nik'];
-        $join = "SELECT * FROM acc_surat where nik = $nik and surat='nikah' ORDER BY id_acc DESC";
+        $join = "SELECT * FROM acc_surat where nik = $nik and surat='nikah' ORDER BY id_acc asc";
         return $this->db->query($join)->row_array();
     }
     public function surat_sktm1()
@@ -288,22 +295,22 @@ class model_masyarakat extends CI_Model
     }
     public function getsuratktp($id)
     {
-        $join = "SELECT *, acc_surat.id_acc,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik WHERE acc_surat.id_acc = $id";
+        $join = "SELECT *, acc_surat.id_acc,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik WHERE acc_surat.id_acc = $id and acc_surat.tanggal";
         return $this->db->query($join)->row_array();
     }
     public function getsuratusaha($id)
     {
-        $join = "SELECT *, acc_surat.id_acc,surat_usaha.jenis_usaha, surat_usaha.tempat_usaha,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_usaha ON surat_usaha.nik = masyarakat.nik WHERE acc_surat.id_acc = $id";
+        $join = "SELECT *, acc_surat.id_acc,surat_usaha.jenis_usaha,surat_usaha.tanggal_surat, surat_usaha.tempat_usaha,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_usaha ON surat_usaha.nik = masyarakat.nik WHERE acc_surat.id_acc = $id and surat_usaha.tanggal_surat = acc_surat.tanggal";
         return $this->db->query($join)->row_array();
     }
     public function getsuratrame($id)
     {
-        $join = "SELECT *, acc_surat.id_acc,surat_izin_rame.maksud, surat_izin_rame.hiburan,surat_izin_rame.waktu,surat_izin_rame.tempat,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_izin_rame ON surat_izin_rame.nik = masyarakat.nik WHERE acc_surat.id_acc = $id";
+        $join = "SELECT *, acc_surat.id_acc,surat_izin_rame.maksud, surat_izin_rame.hiburan,surat_izin_rame.waktu,surat_izin_rame.tanggal_surat, surat_izin_rame.tempat,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_izin_rame ON surat_izin_rame.nik = masyarakat.nik WHERE acc_surat.id_acc = $id and surat_izin_rame.tanggal_surat = acc_surat.tanggal ";
         return $this->db->query($join)->row_array();
     }
     public function suratpindah($id)
     {
-        $join = "SELECT *, acc_surat.id_acc,surat_pindah.alamat_pindah, surat_pindah.`rt/rw_pindah`,surat_pindah.desa_pindah,surat_pindah.kecamatan_pindah,surat_pindah.`kabupaten/kota_pindah`,surat_pindah.provinsi_pindah,surat_pindah.alasan_pindah,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_pindah ON surat_pindah.nik = masyarakat.nik JOIN ikut_pindah ON ikut_pindah.nik_surat = surat_pindah.nik WHERE acc_surat.id_acc = $id";
+        $join = "SELECT *, acc_surat.id_acc,surat_pindah.alamat_pindah, surat_pindah.`rt/rw_pindah`,surat_pindah.desa_pindah,surat_pindah.kecamatan_pindah,surat_pindah.`kabupaten/kota_pindah`,surat_pindah.provinsi_pindah,surat_pindah.alasan_pindah,masyarakat.status, surat_pindah.tanggal_surat FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_pindah ON surat_pindah.nik = masyarakat.nik JOIN ikut_pindah ON ikut_pindah.nik_surat = surat_pindah.nik WHERE acc_surat.id_acc = $id and surat_pindah.tanggal_surat = acc_surat.tanggal";
         return $this->db->query($join)->row_array();
     }
     public function surat_ikut_pindah($id)
@@ -313,12 +320,12 @@ class model_masyarakat extends CI_Model
     }
     public function surat_nikah($id)
     {
-        $join = "SELECT *, acc_surat.id_acc,surat_nikah.pasangan,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_nikah ON surat_nikah.nik = masyarakat.nik WHERE acc_surat.id_acc = $id";
+        $join = "SELECT *, acc_surat.id_acc,surat_nikah.pasangan,masyarakat.status, surat_nikah.tanggal_surat FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_nikah ON surat_nikah.nik = masyarakat.nik WHERE acc_surat.id_acc = $id and surat_nikah.tanggal_surat = acc_surat.tanggal";
         return $this->db->query($join)->row_array();
     }
     public function surat_sktm($id)
     {
-        $join = "SELECT *, acc_surat.id_acc,surat_sktm.alasan,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_sktm ON surat_sktm.nik = masyarakat.nik WHERE acc_surat.id_acc = $id";
+        $join = "SELECT *, acc_surat.id_acc,surat_sktm.alasan,surat_sktm.tanggal_surat,masyarakat.status FROM masyarakat JOIN acc_surat ON masyarakat.nik = acc_surat.nik JOIN surat_sktm ON surat_sktm.nik = masyarakat.nik WHERE acc_surat.id_acc = $id and surat_sktm.tanggal_surat = acc_surat.tanggal";
         return $this->db->query($join)->row_array();
     }
     public function artikel()
@@ -386,6 +393,8 @@ class model_masyarakat extends CI_Model
             'kaur_umum' => $this->input->post('kaur_umum'),
             'kadus1' => $this->input->post('kadus1'),
             'kadus2' => $this->input->post('kadus2'),
+            'visi' => $this->input->post('visi'),
+            'misi' => $this->input->post('misi')
         ];
         return $this->db->update('struktur-organisasi', $data);
     }
@@ -401,5 +410,9 @@ class model_masyarakat extends CI_Model
     public function kampung()
     {
         return $this->db->get('kampung')->result_array();
+    }
+    public function visiMisi()
+    {
+        return $this->db->get_where('artikel', ['judul' => 'Visi Misi Desa Banjar'])->row_array();
     }
 }

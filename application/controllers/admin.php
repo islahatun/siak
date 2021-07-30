@@ -18,6 +18,7 @@ class admin extends CI_Controller
         $data['laki'] = $this->model_masyarakat->laki();
         $data['struktur'] = $this->model_masyarakat->struktur();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
+        $data['visi_misi'] = $this->model_masyarakat->visiMisi();
         // $data['count']  = $this->model_masyarakat->semua();
 
         $this->load->view('templets/header', $data);
@@ -231,32 +232,32 @@ class admin extends CI_Controller
             redirect('admin/artikel');
         }
     }
-    public function edit_artikel($id)
-    {
-        $data['tittle'] = "Artikel";
-        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
-        $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
-        $data['menu'] = $this->model_masyarakat->menu();
-        $data['artikel'] = $this->model_masyarakat->get_artikel();
+    // public function edit_artikel($id)
+    // {
+    //     $data['tittle'] = "Artikel";
+    //     $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+    //     $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
+    //     $data['menu'] = $this->model_masyarakat->menu();
+    //     $data['artikel'] = $this->model_masyarakat->get_artikel();
 
-        $this->form_validation->set_rules('judul', 'judul', 'required|trim');
-        $this->form_validation->set_rules('isi', 'isi', 'required|trim');
+    //     $this->form_validation->set_rules('judul', 'judul', 'required|trim');
+    //     $this->form_validation->set_rules('isi', 'isi', 'required|trim');
 
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templets/header', $data);
-            $this->load->view('templets/sidebar', $data);
-            $this->load->view('templets/topbar', $data);
-            $this->load->view('admin/artikel', $data);
-            $this->load->view('templets/footer');
-        } else {
-            $this->model_masyarakat->artikel();
+    //     if ($this->form_validation->run() == false) {
+    //         $this->load->view('templets/header', $data);
+    //         $this->load->view('templets/sidebar', $data);
+    //         $this->load->view('templets/topbar', $data);
+    //         $this->load->view('admin/artikel', $data);
+    //         $this->load->view('templets/footer');
+    //     } else {
+    //         $this->model_masyarakat->artikel();
 
-            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di upload</strong> </div>');
+    //         $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di upload</strong> </div>');
 
-            redirect('admin/artikel');
-        }
-    }
-    
+    //         redirect('admin/artikel');
+    //     }
+    // }
+
     public function hapus_artikel($id)
     {
         $this->model_masyarakat->delete_artikel($id);
@@ -285,6 +286,8 @@ class admin extends CI_Controller
         $this->form_validation->set_rules('kaur_umum', 'kaur_umum', 'required|trim');
         $this->form_validation->set_rules('kadus1', 'kadus1', 'required|trim');
         $this->form_validation->set_rules('kadus2', 'kadus2 Perkawinan', 'required|trim');
+        $this->form_validation->set_rules('visi', 'visi Perkawinan', 'required|trim');
+        $this->form_validation->set_rules('misi', 'misi Perkawinan', 'required|trim');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templets/header', $data);
