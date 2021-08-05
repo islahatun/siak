@@ -59,6 +59,7 @@ class masyarakat extends CI_Controller
             $this->load->view('masyarakat/profil', $data);
             $this->load->view('templets/footer');
         } else {
+            $this->model_masyarakat->edit_foto();
             $this->model_masyarakat->editPofil();
 
             $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Data Berhasil diubah</strong><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span </button> </div>');

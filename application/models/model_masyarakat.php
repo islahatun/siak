@@ -167,10 +167,53 @@ class model_masyarakat extends CI_Model
         ];
         $this->db->insert('acc_surat', $data);
     }
+    public function edit_foto()
+    {
+        $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
+        $nik = $n['nik'];
+        // $jk = $this->input->post('jk');
+        // $status = $this->input->post('status');
+        // $data = [
+        $nama = $this->input->post('nama');
+        $kk = $this->input->post('kk');
+        $jk = $this->input->post('jk');
+        $tempat_lahir = $this->input->post('tempat_lahir');
+        $tanggal_lahir = $this->input->post('tanggal_lahir');
+        $alamat = $this->input->post('alamat');
+        $rt_rw = $this->input->post('rt/rw');
+        $desa = $this->input->post('desa');
+        $kecamatan = $this->input->post('kecamatan');
+        $kabupaten = $this->input->post('kabupaten');
+        $agama = $this->input->post('agama');
+        $status = $this->input->post('status');
+        $pendidikan_terakhir = $this->input->post('pendidikan_terakhir');
+        $kewarganegaraan = $this->input->post('kewarganegaraan');
+        $pekerjaan = $this->input->post('pekerjaan');
+        $gol = $this->input->post('gol');
+        // ];
+
+        $this->db->set('nama', $nama);
+        $this->db->set('kk', $kk);
+        $this->db->set('tempat_lahir', $tempat_lahir);
+        $this->db->set('tanggal_lahir', $tanggal_lahir);
+        $this->db->set('alamat', $alamat);
+        $this->db->set('rt/rw', $rt_rw);
+        $this->db->set('desa', $desa);
+        $this->db->set('kecamatan', $kecamatan);
+        $this->db->set('kabupaten', $kabupaten);
+        $this->db->set('agama', $agama);
+        $this->db->set('status', $status);
+        $this->db->set('pendidikan_terakhir', $pendidikan_terakhir);
+        $this->db->set('kewarganegaraan', $kewarganegaraan);
+        $this->db->set('pekerjaan', $pekerjaan);
+        $this->db->set('gol', $gol);
+        $this->db->where('nik', $nik);
+        $this->db->update('masyarakat');
+    }
     public function editPofil()
     {
-        $gambar = $_FILES['gambar']['name'];
-        if ($gambar) {
+        $foto = $_FILES['gambar']['name'];
+        if ($foto) {
             $config['upload_path']          = './assets/img/profil/';
             $config['allowed_types']        = 'gif|jpg|png|jpeg';
             $config['max_size']             = 2048;
@@ -180,31 +223,51 @@ class model_masyarakat extends CI_Model
 
                 $this->load->view('upload_form', $error);
             } else {
-
                 $new_logo = $this->upload->data('file_name');
                 $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
                 $nik = $n['nik'];
-                $data = [
-                    'nama' => $this->input->post('nama'),
-                    'kk' => $this->input->post('kk'),
-                    'jk' => $this->input->post('jk'),
-                    'tempat_lahir' => $this->input->post('tempat_lahir'),
-                    'tanggal_lahir' => $this->input->post('tanggal_lahir'),
-                    'alamat' => $this->input->post('alamat'),
-                    'rt/rw' => $this->input->post('rt/rw'),
-                    'desa' => $this->input->post('desa'),
-                    'kecamatan' => $this->input->post('kecamatan'),
-                    'kabupaten' => $this->input->post('kabupaten'),
-                    'agama' => $this->input->post('agama'),
-                    'status' => $this->input->post('status'),
-                    'pendidikan_terakhir' => $this->input->post('pendidikan_terakhir'),
-                    'kewarganegaraan' => $this->input->post('kewarganegaraan'),
-                    'pekerjaan' => $this->input->post('pekerjaan'),
-                    'gol' => $this->input->post('gol'),
-                    'gambar' => $new_logo
-                ];
+                // $jk = $this->input->post('jk');
+                // $status = $this->input->post('status');
+                // $data = [
+                $nama = $this->input->post('nama');
+                $kk = $this->input->post('kk');
+                $jk = $this->input->post('jk');
+                $tempat_lahir = $this->input->post('tempat_lahir');
+                $tanggal_lahir = $this->input->post('tanggal_lahir');
+                $alamat = $this->input->post('alamat');
+                $rt_rw = $this->input->post('rt/rw');
+                $desa = $this->input->post('desa');
+                $kecamatan = $this->input->post('kecamatan');
+                $kabupaten = $this->input->post('kabupaten');
+                $agama = $this->input->post('agama');
+                $status = $this->input->post('status');
+                $pendidikan_terakhir = $this->input->post('pendidikan_terakhir');
+                $kewarganegaraan = $this->input->post('kewarganegaraan');
+                $pekerjaan = $this->input->post('pekerjaan');
+                $gol = $this->input->post('gol');
+                $gambar = $new_logo;
+                // ];
+
+                $this->db->set('nama', $nama);
+                $this->db->set('kk', $kk);
+                $this->db->set('tempat_lahir', $tempat_lahir);
+                $this->db->set('tanggal_lahir', $tanggal_lahir);
+                $this->db->set('alamat', $alamat);
+                $this->db->set('rt/rw', $rt_rw);
+                $this->db->set('desa', $desa);
+                $this->db->set('kecamatan', $kecamatan);
+                $this->db->set('kabupaten', $kabupaten);
+                $this->db->set('agama', $agama);
+                $this->db->set('status', $status);
+                $this->db->set('pendidikan_terakhir', $pendidikan_terakhir);
+                $this->db->set('kewarganegaraan', $kewarganegaraan);
+                $this->db->set('pekerjaan', $pekerjaan);
+                $this->db->set('gol', $gol);
+                $this->db->set('gambar', $gambar);
                 $this->db->where('nik', $nik);
-                $this->db->update('masyarakat', $data);
+                $this->db->update('masyarakat');
+                // var_dump($data);
+                // die;
             }
         }
     }
