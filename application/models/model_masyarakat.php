@@ -244,49 +244,49 @@ class model_masyarakat extends CI_Model
         $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
         $nik = $n['nik'];
         $join = "SELECT * FROM acc_surat where nik = $nik and surat='ktp' ORDER BY id_acc DESC";
-        return $this->db->query($join)->row_array();
+        return $this->db->query($join)->result_array();
     }
     public function surat_domisili()
     {
         $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
         $nik = $n['nik'];
         $join = "SELECT * FROM acc_surat where nik = $nik and surat='domisili' ORDER BY id_acc DESC";
-        return $this->db->query($join)->row_array();
+        return $this->db->query($join)->result_array();
     }
     public function surat_nikah1()
     {
         $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
         $nik = $n['nik'];
         $join = "SELECT * FROM acc_surat where nik = $nik and surat='nikah' ORDER BY id_acc asc";
-        return $this->db->query($join)->row_array();
+        return $this->db->query($join)->result_array();
     }
     public function surat_sktm1()
     {
         $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
         $nik = $n['nik'];
         $join = "SELECT * FROM acc_surat where nik = $nik and surat='sktm' ORDER BY id_acc DESC";
-        return $this->db->query($join)->row_array();
+        return $this->db->query($join)->result_array();
     }
     public function surat_rame()
     {
         $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
         $nik = $n['nik'];
         $join = "SELECT * FROM acc_surat where nik = $nik and surat='rame' ORDER BY id_acc DESC";
-        return $this->db->query($join)->row_array();
+        return $this->db->query($join)->result_array();
     }
     public function surat_pindah()
     {
         $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
         $nik = $n['nik'];
         $join = "SELECT * FROM acc_surat where nik = $nik and surat='pindah' ORDER BY id_acc DESC";
-        return $this->db->query($join)->row_array();
+        return $this->db->query($join)->result_array();
     }
     public function surat_usaha()
     {
         $n = $this->db->get_where('login', ['nik' => $this->session->userdata('nik')])->row_array();
         $nik = $n['nik'];
         $join = "SELECT * FROM acc_surat where nik = $nik and surat='usaha' ORDER BY id_acc DESC";
-        return $this->db->query($join)->row_array();
+        return $this->db->query($join)->result_array();
     }
     public function laporan_surat()
     {

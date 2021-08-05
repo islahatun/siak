@@ -180,6 +180,7 @@ class surat extends CI_Controller
         $this->form_validation->set_rules('nik', 'nik', 'trim|required');
         $this->form_validation->set_rules('tanggal', 'tanggal pengajuan', 'trim|required');
         $this->form_validation->set_rules('surat', 'surat', 'trim|required');
+        $this->form_validation->set_rules('alamat_domisili', 'alamat_domisili', 'trim|required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templets/header', $data);

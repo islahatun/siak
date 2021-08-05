@@ -10,8 +10,6 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nama Pengaju</th>
-                            <th scope="col">Jenis Surat</th>
                             <th scope="col">Tanggal Pengajuan</th>
                             <th scope="col">Download</th>
                         </tr>

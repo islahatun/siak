@@ -67,14 +67,33 @@
                         </div>
                     </div>
                 </div>
-                <span class="container-fluid">
-                    <a href="<?= base_url('admin/print/') ?><?= $surat['id_acc'] ?>" class="btn btn-dark mb-5" type="submit">print</a>
-                </span>
                 <span class="container-fluid text-right">
                     <button class="btn btn-dark mb-5" type="submit">Kirim</button>
                 </span>
             </form>
-
+            <h3>Riwayat Pengiriman Surat</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Tanggal Pengajuan</th>
+                        <th scope="col">Download</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($surat as $s) : ?>
+                        <tr>
+                            <th scope="row"><?= $i; ?></th>
+                            <td><?= $s['tanggal']; ?></td>
+                            <td>
+                                <a href="<?= base_url('admin/print/') ?><?= $s['id_acc'] ?> " class="btn btn-primary"><i class="fa fa-print"> CETAK</i></a>
+                            </td>
+                        </tr>
+                </tbody>
+                <?php $i++; ?>
+            <?php endforeach; ?>
+            </table>
         </div>
     </div>
 

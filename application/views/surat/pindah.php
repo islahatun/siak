@@ -228,18 +228,38 @@
                             <?php $j++; ?>
                         <?php endforeach ?>
                         </table>
+                        <h3>Riwayat Pengiriman Surat</h3>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Tanggal Pengajuan</th>
+                                    <th scope="col">Download</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($surat as $s) : ?>
+                                    <tr>
+                                        <th scope="row"><?= $i; ?></th>
+                                        <td><?= $s['tanggal']; ?></td>
+                                        <td>
+                                            <a href="<?= base_url('admin/print/') ?><?= $s['id_acc'] ?> " class="btn btn-primary"><i class="fa fa-print"> CETAK</i></a>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                            <?php $i++; ?>
+                        <?php endforeach; ?>
+                        </table>
                     </div>
-                    <a href="<?= base_url('admin/print/') ?><?= $surat['id_acc'] ?>" class="btn btn-dark mb-5" type="submit">print</a>
                 </div>
+
+
             </div>
         </div>
 
+        <!-- /.container-fluid -->
 
     </div>
-</div>
-
-<!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->
-<!-- Button trigger modal -->
+    <!-- End of Main Content -->
+    <!-- Button trigger modal -->
