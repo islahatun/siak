@@ -5,10 +5,22 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $judul; ?></h1>
     <div class="card">
         <div class="card-body">
-            <div>
-                <a href="<?= base_url('admin/tambah_penduduk') ?>" class="btn btn-dark mb-3">Tambah Penduduk</a>
+            <div class="row">
+                <div class="col">
+                    <a href="<?= base_url('admin/tambah_penduduk') ?>" class="btn btn-dark mb-3">Tambah Penduduk</a>
+                </div>
+                <div class="col">
+                    <form action="<?= base_url('admin/cari') ?>" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Cari Penduduk" name='cari'>
+                            <span>
+                                <button type="submit" class="btn btn-primary">Cari</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="scroll">
+            <div class="scroll1">
                 <?= $this->session->flashdata('message') ?>
                 <table class="table ">
                     <thead>

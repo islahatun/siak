@@ -31,10 +31,26 @@ class admin extends CI_Controller
     {
         $data['tittle'] = "Data Penduduk";
         $data['judul'] = "Data Penduduk";
+        $data['cari'] = $this->model_masyarakat->cari();
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['masyarakat'] = $this->db->get('masyarakat')->result_array();
+
+        $this->load->view('templets/header', $data);
+        $this->load->view('templets/sidebar');
+        $this->load->view('templets/topbar');
+        $this->load->view('admin/data_penduduk', $data);
+        $this->load->view('templets/footer');
+    }
+    public function cari()
+    {
+        $data['tittle'] = "Data Penduduk";
+        $data['judul'] = "Data Penduduk";
+        $data['masyarakat'] = $this->model_masyarakat->cari();
+        $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
+        // $data['masyarakat'] = $this->model_masyarakat->getMasyarakatByNik();
+        $data['menu'] = $this->model_masyarakat->menu();
 
         $this->load->view('templets/header', $data);
         $this->load->view('templets/sidebar');

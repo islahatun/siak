@@ -29,6 +29,14 @@ class model_masyarakat extends CI_Model
         ];
         $this->db->insert('login', $data);
     }
+    public function cari()
+    {
+        $cari = $this->input->post('cari');
+        $this->db->like('nama', $cari);
+        $this->db->or_like('nik', $cari);
+        $this->db->or_like('jk', $cari);
+        return  $this->db->get('masyarakat')->result_array();
+    }
     public function admin()
     {
         return $this->db->get_where('login', ['level' => 'admin'])->row_array();
@@ -56,7 +64,6 @@ class model_masyarakat extends CI_Model
     }
     public function getMasyarakat($nik)
     {
-
 
         // $masyarakat = "SELECT * FROM masyarakat Where masyarakat.nik = '$nik'";
         return $this->db->get_where('masyarakat', ['nik' => $nik])->row_array();
@@ -194,6 +201,7 @@ class model_masyarakat extends CI_Model
 
         $this->db->set('nama', $nama);
         $this->db->set('kk', $kk);
+        $this->db->set('jk', $jk);
         $this->db->set('tempat_lahir', $tempat_lahir);
         $this->db->set('tanggal_lahir', $tanggal_lahir);
         $this->db->set('alamat', $alamat);

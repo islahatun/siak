@@ -237,8 +237,8 @@ class surat extends CI_Controller
     }
     public function surat_rame()
     {
-        $data['tittle'] = "pembuatan pengantar nikah";
-        $data['judul'] = "Surat pengantar nikah";
+        $data['tittle'] = "pembuatan Surat Izin Rame Rame";
+        $data['judul'] = "Surat Izin Rame-Rame";
         $data['pengguna'] = $this->model_masyarakat->sessionpengguna();
         $data['menu'] = $this->model_masyarakat->menu();
         $data['surat'] = $this->model_masyarakat->surat_rame();
