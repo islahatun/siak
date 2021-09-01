@@ -32,8 +32,14 @@
                         <div class="form-group row">
                             <label for="inputnik" class="col-sm-4 col-form-label">Jenis Kelamin</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputnik" name="jk" value="<?= $masyarakat['jk'] ?>">
+                                <select class="form-control" id="inputnik" name="jk">
+                                    <option><?= $masyarakat['jk'] ?></option>
+                                    <option>LAKI-LAKI</option>
+                                    <option>PEREMPUAN</option>
+                                </select>
                                 <?= form_error('jk', '<small class="text-danger pl-3">', '</small>') ?>
+                                <!-- <input type="text" class="form-control" id="inputnik" name="jk" value="<?= $masyarakat['jk'] ?>">
+                                <?= form_error('jk', '<small class="text-danger pl-3">', '</small>') ?> -->
                             </div>
                         </div>
                         <div class="form-group row">
