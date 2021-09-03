@@ -96,8 +96,16 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-4 col-form-label">Agama</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword" name="agama">
+                                <select class="form-control" id="inputnik" name="agama">
+                                    <option>ISLAM</option>
+                                    <option>KRISTEN</option>
+                                    <option>BUDHA</option>
+                                    <option>HINDU</option>
+                                    <option>KONGUCU</option>
+                                </select>
                                 <?= form_error('agama', '<small class="text-danger pl-3">', '</small>') ?>
+                                <!-- <input type="text" class="form-control" id="inputPassword" name="agama">
+                                 -->
                             </div>
                         </div>
                         <div class="form-group row">

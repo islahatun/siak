@@ -156,7 +156,7 @@ class admin extends CI_Controller
 
             $this->model_masyarakat->editpenduduk($nik);
 
-            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi di upload</strong></div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Berhasi Diubah</strong></div>');
 
             redirect('admin/penduduk');
         }

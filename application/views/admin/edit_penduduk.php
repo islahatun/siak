@@ -38,8 +38,8 @@
                                     <option>PEREMPUAN</option>
                                 </select>
                                 <?= form_error('jk', '<small class="text-danger pl-3">', '</small>') ?>
-                                <!-- <input type="text" class="form-control" id="inputnik" name="jk" value="<?= $masyarakat['jk'] ?>">
-                                <?= form_error('jk', '<small class="text-danger pl-3">', '</small>') ?> -->
+                                <!-- <input type="text" class="form-control" id="inputnik" name="jk" value="<?= $masyarakat['jk'] ?>"> -->
+
                             </div>
                         </div>
                         <div class="form-group row">
@@ -97,8 +97,18 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-4 col-form-label">Agama</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword" name="agama" value="<?= $masyarakat['agama'] ?>">
+                                <select class="form-control" id="inputPassword" name="agama">
+                                    <option><?= $masyarakat['agama'] ?></option>
+                                    <option>ISLAM</option>
+                                    <option>KRISTEN</option>
+                                    <option>PROTESTAN</option>
+                                    <option>KATOLIK</option>
+                                    <option>HINDU</option>
+                                    <option>BUDHA</option>
+                                </select>
                                 <?= form_error('agama', '<small class="text-danger pl-3">', '</small>') ?>
+                                <!-- <input type="text" class="form-control" id="inputPassword" name="agama" value="<?= $masyarakat['agama'] ?>"> -->
+
                             </div>
                         </div>
                         <div class="form-group row">
@@ -132,8 +142,15 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-4 col-form-label">Golongan Darah</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword" name="gol" value="<?= $masyarakat['gol'] ?>">
+                                <select class="form-control" id="inputPassword" name="gol">
+                                    <option><?= $masyarakat['gol'] ?></option>
+                                    <option>A</option>
+                                    <option>AB</option>
+                                    <option>B</option>
+                                    <option>O</option>
+                                </select>
                                 <?= form_error('gol', '<small class="text-danger pl-3">', '</small>') ?>
+                                <!-- <input type="text" class="form-control" id="inputPassword" name="gol" value="<?= $masyarakat['gol'] ?>"> -->
                             </div>
                         </div>
 
