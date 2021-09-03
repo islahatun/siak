@@ -121,8 +121,13 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-4 col-form-label">Status Perkawinan</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" id="inputPassword" name="status" value="<?= $masyarakat['status'] ?>">
+                                <select class="form-control" id="inputPassword" name="status">
+                                    <option><?= $masyarakat['status'] ?></option>
+                                    <option>BELUM MENIKAH</option>
+                                    <option>MENIKAH</option>
+                                </select>
                                 <?= form_error('status', '<small class="text-danger pl-3">', '</small>') ?>
+                                <!-- <input type="text" class="form-control" id="inputPassword" name="status" value="<?= $masyarakat['status'] ?>"> -->
                             </div>
                         </div>
                         <div class="form-group row">
